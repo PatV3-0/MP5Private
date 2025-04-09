@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #037971;
+  }
+  .login-container {
+    border-radius: 50.49px;
+    border: 15.15px solid #037971;
+    position: relative;
+    display: flex;
+    background-color: #f1f3f6;
+  }
+  .form-section {
+    padding: 65px 242px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .welcome-heading {
+    color: rgba(51, 119, 153, 0.86);
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 90.2%;
+    margin-bottom: 40px;
+  }
+  .input-group {
+    width: 513px;
+    margin-bottom: 30px;
+  }
+  .input-label {
+    color: #555;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    margin-bottom: 7px;
+    text-align: center;
+    display: block;
+  }
+  .input-container {
+    display: flex;
+    align-items: center;
+    border-radius: 8.078px;
+    height: 60px;
+    background-color: #fff;
+  }
+  .form-input {
+    flex: 1;
+    border: none;
+    padding: 0 24px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    color: #555;
+    height: 100%;
+    border-radius: 8.078px;
+    outline: none;
+  }
+  .input-button {
+    width: 60px;
+    height: 100%;
+    border: none;
+    border-radius: 8.078px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #fd7401;
+  }
+  .button-icon {
+    width: 29px;
+    height: 29px;
+  }
+  .button-group {
+    display: flex;
+    gap: 107px;
+    margin-top: 30px;
+  }
+
+  .button-group :hover {
+      background-color: #f07b21;
+  
+  }
+  .primary-button {
+    width: 198px;
+    height: 46px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #ff8c32;
+  }
+  .account-text {
+    color: #555;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    margin-top: 30px;
+  }
+  .social-container {
+    margin-top: 90px;
+  }
+  .social-icons {
+    width: 184px;
+    height: 40px;
+  }
+  .brand-text {
+    color: rgba(51, 119, 153, 0.44);
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 90.2%;
+    margin-top: 10px;
+  }
+  .brand-section {
+    width: 384px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50.49px;
+  }
+  .our-img {
+    width: 30px;
+    position: relative;
+    display: flex;
+    margin-top:30px ;
+    margin-left:5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50.49px;
+  }
+  .our-img-2 {
+    width: 60px;
+    position: relative;
+    display: flex;
+    margin-top:5px ;
+    margin-left:-10px ;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50.49px;
+  }
+  .brand-logo {
+    color: #037971;
+    font-family: "Montserrat", sans-serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 90.2%;
+  }
+  .decoration-1 {
+    position: absolute;
+    width: 24px;
+    height: 41px;
+    transform: rotate(-45deg);
+    top: 326px;
+    right: 50px;
+  }
+  .decoration-2 {
+    position: absolute;
+    width: 68px;
+    height: 87px;
+    transform: rotate(-45deg);
+    top: 274px;
+    right: 59px;
+    left: 229px;
+  }
+  @media (max-width: 991px) {
+    .login-container {
+      width: 100%;
+      height: auto;
+      border-width: 10px;
+      border-radius: 30px;
+    }
+    .form-section {
+      padding: 40px 20px;
+    }
+    .input-group {
+      width: 100%;
+      max-width: 513px;
+    }
+    .button-group {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+    .primary-button {
+      width: 100%;
+      max-width: 300px;
+    }
+    .brand-section {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .welcome-heading {
+      font-size: 24px;
+    }
+    .input-container {
+      height: 50px;
+    }
+    .primary-button {
+      height: 40px;
+    }
+    .social-container {
+      transform: scale(0.8);
+    }
+  }

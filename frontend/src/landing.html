@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UData - Lightning-Fast Database Management</title>
+    <!-- Link to the External CSS File -->
+    <link rel="stylesheet" href="landing.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+          .brand-text {
+    color: #037971;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 90.2%;
+    margin-top: 10px;
+  }
+  .our-img {
+    width: 25px;
+    position: relative;
+    display: flex;
+    margin-top:-10px ;
+    margin-left:60px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50.49px;
+  }
+  .our-img-2 {
+    width: 50px;
+    position: relative;
+    display: flex;
+    margin-top:-65px ;
+    margin-left:57px ;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50.49px;
+  }
+  .our-img-3{
+    width: 25px;
+    position: relative;
+    display: flex;
+    margin-top:-10px ;
+    margin-left:9px;
+    align-items: center;
+    justify-content: center;
+    background-color:#1f2937 ;
+    border-radius: 50.49px;
+  }
+  .our-img-4 {
+    width: 50px;
+    display: flex;
+    margin-top:-20px ;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f2937;
+    border-radius: 50.49px;
+  }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section with buttons -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md py-3 flex justify-center gap-4 z-50">
+        <div class="logo absolute left-4">
+            <p class="brand-text">udata</p>
+            <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+      <img class = "our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" /> <!-- Adjust height as needed -->
+        </div>
+        <nav class="flex gap-4">
+            <a href="#create-db-card" class="nav-button bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Create Database</a>
+            <a href="#delete-db-card" class="nav-button bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Delete Database</a>
+            <a href="#edit-db-card" class="nav-button bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600">Edit Database</a>
+            <a href="#view-db-card" class="nav-button bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600">View Database</a>
+            <a href="login.html" class="nav-button bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-800">Logout</a>
+
+             <!-- Search Bar with Magnifying Glass Icon -->
+             <div class="relative">
+                <input type="text" placeholder="Search..." class="search-bar text-sm p-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              </div>
+              <a href="settings.html" class="nav-button bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-800">Profile Settings</a>
+
+        </nav>
+    </header>
+    
+
+    <main class="overflow-hidden">
+      <!-- Hero Section -->
+      <section class="hero-section flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full">
+        <div class="flex shrink-0 self-end max-w-full border-orange-400 border-solid bg-zinc-300 border-[3px] h-[106px] rounded-[55px] w-[1262px]"></div>
+        <div class="mt-2 w-full max-w-[1234px] max-md:mt-10 max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="w-[66%] max-md:ml-0 max-md:w-full">
+              <div class="flex flex-col mr-0 w-full max-md:max-w-full">
+                <header class="w-full max-md:max-w-full">
+                  <h1 class="hero-header text-6xl font-bold tracking-tighter text-black max-md:max-w-full max-md:text-4xl">Lightning-Fast Database Management, Simplified</h1>
+                  <p class="hero-subtext mt-10 text-2xl text-black max-md:max-w-full">Zero Hassle, Infinite Possibilities—Create Databases in Seconds!</p>
+                </header>
+               
+              </div>
+            </div>
+            <div class="ml-5 w-[34%] max-md:ml-0 max-md:w-full">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1390f7a1ab9e93d2b5a90ebf1a8f51809744cfa142202b9ded8ef9d09e6dd7af?placeholderIfAbsent=true&apiKey=e68e6b839e8e417d99ce56ae33cb2415" alt="Database management illustration" class="object-contain grow w-full aspect-[1.09] max-md:max-w-full"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Get Started Section -->
+      <section class="get-started-section flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full">
+        <h2 class="get-started-header self-start mt-80 ml-8 text-5xl font-semibold tracking-tighter text-black max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
+            Get Started Now
+        </h2>
+        <p class="get-started-text mt-7 text-2xl tracking-tight text-black max-md:max-w-full">
+            Take full control of your databases with UData's powerful tools. Easily create, edit, delete, and view your databases—all in one seamless platform. No complicated setups, just fast and efficient database management at your fingertips. Choose an action below and get started instantly.
+        </p>
+        <div class="mt-24 w-full max-w-[1214px] max-md:mt-10 max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+                <div class="w-6/12 max-md:ml-0 max-md:w-full">
+                    <a id="create-db-card" href="dataview.html" class="create-db-card action-card grow py-36 pr-16 pl-20 w-full text-xl font-extrabold bg-white border-solid border-[3px] border-slate-500 text-slate-500 max-md:px-5 max-md:py-24 max-md:mt-3.5 max-md:max-w-full flex items-center justify-center text-center hover:cursor-pointer">
+                        CREATE DATABASE
+                    </a>
+                </div>
+                <div class="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                    <a id="edit-db-card" href="dataview.html" class="edit-db-card action-card grow py-36 pr-16 pl-20 w-full text-xl font-extrabold rounded-lg border-solid bg-teal-700 bg-opacity-80 border-[3px] border-slate-500 text-white max-md:px-5 max-md:py-24 max-md:mt-3.5 max-md:max-w-full flex items-center justify-center text-center hover:cursor-pointer">
+                        EDIT DATABASE
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="mt-4 w-full max-w-[1216px] max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+                <div class="w-6/12 max-md:ml-0 max-md:w-full">
+                    <a id="delete-db-card" href="dataview.html" class="delete-db-card action-card grow py-36 pr-16 pl-20 w-full text-xl font-extrabold rounded-lg border-solid bg-orange-400 bg-opacity-90 border-[3px] border-slate-500 text-white max-md:px-5 max-md:py-24 max-md:mt-4 max-md:max-w-full flex items-center justify-center text-center hover:cursor-pointer">
+                        DELETE DATABASE
+                    </a>
+                </div>
+                <div class="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                    <a id="view-db-card" href="dataview.html" class="view-db-card action-card grow py-36 pr-16 pl-20 w-full text-xl font-extrabold bg-white border-solid border-[3px] border-slate-500 text-slate-500 max-md:px-5 max-md:py-24 max-md:mt-4 max-md:max-w-full flex items-center justify-center text-center hover:cursor-pointer">
+                        VIEW DATABASE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+      <!-- Contact Section (Remaining Part) -->
+<!-- Contact Section -->
+<section class="contact-section flex overflow-hidden z-10 flex-wrap gap-5 justify-between p-20 w-full bg-white mt-[496px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    <h2 class="contact-header my-auto text-5xl font-semibold tracking-tighter text-black max-md:text-4xl">Contact Us.</h2>
+
+    <!-- Updated Contact Information -->
+    <div class="contact-text w-full mt-8 text-xl text-black font-medium max-md:max-w-full">
+        <p>Founded in 2020, UData was created with a vision to simplify database management for businesses of all sizes. Our mission is to provide lightning-fast, secure, and intuitive database solutions that help you focus on what matters most—your data.</p>
+        <p class="mt-4">Got questions or need support? Reach out to our team, and we'll be happy to assist you. You can contact us via email at <strong>support@udata.com</strong> or call us at <strong>+1 (800) 555-1234</strong>. Our support team is available 24/7 to ensure you have the best experience using UData.</p>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="flex gap-6 items-center text-2xl font-medium mt-6">
+        <a href="https://www.instagram.com" target="_blank">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/199c9a3c64fa87237dabe74b1aff1fe617935141f37a07ba364b7012e90e628c?placeholderIfAbsent=true&apiKey=e68e6b839e8e417d99ce56ae33cb2415" alt="Instagram" class="object-contain w-10 rounded-full" />
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b1bac3668b19309ab1c82835d154f9962b24bad9c262723d53374e3173c3e762?placeholderIfAbsent=true&apiKey=e68e6b839e8e417d99ce56ae33cb2415" alt="Facebook" class="object-contain w-10 rounded-full" />
+        </a>
+        <a href="https://www.twitter.com" target="_blank">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b1c9891749352950fcd8598f97101b8fcdf9c7b59824df69767c01b54396a0a3?placeholderIfAbsent=true&apiKey=e68e6b839e8e417d99ce56ae33cb2415" alt="Twitter" class="object-contain w-10 rounded-full" />
+        </a>
+    </div>
+</section>
+
+<footer class="bg-gray-800 text-white py-6 text-center flex justify-center items-center gap-4">
+    <img class = "our-img-3" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+      <img class = "our-img-4" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+    <p>&copy; 2025 UData, Inc. All rights reserved.</p>
+</footer>
+
+      
+    </main>
+  </body>
+</html>

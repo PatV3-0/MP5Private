@@ -1,0 +1,22 @@
+[
+  {
+    "_id": 1002,
+    "name": "space test",
+    "owner": 1,
+    "isPublic": false,
+    "createdAt": "2025-03-08T14:45:10.161Z",
+    "updatedAt": "2025-03-08T14:45:10.161Z",
+    "description": "",
+    "tags": [],
+    "collections": [],
+    "permissions": {
+      "read": [
+        1
+      ],
+      "write": [
+        1
+      ]
+    },
+    "loaded": false
+  }
+]

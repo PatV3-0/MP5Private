@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>udata Login Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&family=Inter:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="loginStyle.css">
+  <script src="LoginScript.js"></script> 
+</head>
+<body>
+  <main class="login-container">
+    <section class="form-section">
+      <h1 class="welcome-heading">Welcome to udata</h1>
+
+      <form>
+        <div class="input-group">
+          <label for="username" class="input-label">Username</label>
+          <div class="input-container">
+            <input
+              type="username"
+              id="username"
+              placeholder="Jongisapho Ndeya"
+              class="form-input"
+              aria-label="username"
+              required
+            />
+            <button type="button" class="input-button" aria-label="Email icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bb8ca7ff46bc829258a5ccceee68307ce964beab" alt="Email" class="button-icon" />
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password" class="input-label">Password</label>
+          <div class="input-container">
+            <input
+              type="password"
+              id="password"
+              placeholder="Jongi@123"
+              class="form-input"
+              aria-label="Password"
+              required
+            />
+            <button type="button" class="input-button" aria-label="Password icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba08c6e6cd5713b4d208429a5ad6d512376d44f6" alt="Password" class="button-icon" />
+            </button>
+          </div>
+        </div>
+
+        <p class="account-text">Dont have an account ?</p>
+        <div class="button-group">
+          <button type="button" class="primary-button" onclick="window.location.href='register.html'">Sign up</button>
+          <button type="submit" class="primary-button">Login</button>
+        </div>
+      </form>
+
+      <div class="social-container">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0254e7d353d53c26b1dcf3c5fcbdee80a6ef6cbd" alt="Social Icons" class="social-icons" />
+      </div>
+
+      <p class="brand-text">udata</p>
+    </section>
+
+    
+    <section class="brand-section">
+      <h2 class="brand-logo">udata</h2>
+      <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+      <img class = "our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+    </section>
+  </main>

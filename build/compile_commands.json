@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/sean/COS 301/MP5/build",
+  "command": "/usr/bin/g++  -I\"/home/sean/COS 301/MP5/include\" -g -std=gnu++17 -o CMakeFiles/mp5_lib.dir/src/main.cpp.o -c \"/home/sean/COS 301/MP5/src/main.cpp\"",
+  "file": "/home/sean/COS 301/MP5/src/main.cpp"
+},
+{
+  "directory": "/home/sean/COS 301/MP5/build",
+  "command": "/usr/bin/g++  -I\"/home/sean/COS 301/MP5/include\" -g -Wall -Wextra -Wpedantic -std=gnu++17 -o CMakeFiles/mp5.dir/src/main.cpp.o -c \"/home/sean/COS 301/MP5/src/main.cpp\"",
+  "file": "/home/sean/COS 301/MP5/src/main.cpp"
+},
+{
+  "directory": "/home/sean/COS 301/MP5/build/tests",
+  "command": "/usr/bin/g++  -I\"/home/sean/COS 301/MP5/include\" -g -std=gnu++17 -o CMakeFiles/run_tests.dir/dummy_test.cpp.o -c \"/home/sean/COS 301/MP5/tests/dummy_test.cpp\"",
+  "file": "/home/sean/COS 301/MP5/tests/dummy_test.cpp"
+}
+]

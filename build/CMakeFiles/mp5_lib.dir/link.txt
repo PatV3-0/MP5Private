@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmp5_lib.a CMakeFiles/mp5_lib.dir/src/main.cpp.o
+/usr/bin/ranlib libmp5_lib.a

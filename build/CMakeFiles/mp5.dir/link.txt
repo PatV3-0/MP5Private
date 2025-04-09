@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/mp5.dir/src/main.cpp.o -o bin/mp5  libmp5_lib.a -lpthread 

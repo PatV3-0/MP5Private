@@ -1,0 +1,151 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  padding-top: 64px;
+  background-color: white;
+  margin-bottom: 0; /* Ensure no extra space below the hero section */
+}
+.hero-header {
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+}
+
+.hero-subtext {
+  margin-top: 24px;
+  font-size: 1.25rem;
+  color: black;
+}
+
+.hero-button {
+  padding: 20px 40px;
+  font-size: 1.25rem;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+/* Get Started Section */
+.get-started-section {
+  margin-bottom: 0;
+  /*padding: 40px;*/
+  text-align: center;
+}
+
+.get-started-header {
+  margin-top: 80px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: black;
+}
+
+.get-started-text {
+  margin-top: 30px;
+  font-size: 1.25rem;
+  color: black;
+}
+
+.action-card {
+  padding: 36px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: 3px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.create-db-card {
+  background-color: white;
+  color: #333;
+}
+
+.edit-db-card {
+  background-color: #008080;
+  color: white;
+}
+
+.delete-db-card {
+  background-color: #ff6f00;
+  color: white;
+}
+
+.view-db-card {
+  background-color: white;
+  color: #333;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 20px;
+  background-color: white;
+  margin-top: 0; /* Set to 0 to remove extra space */
+}
+
+
+.contact-header {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: black;
+}
+
+.contact-buttons .btn {
+  padding: 20px 40px;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Footer Section */
+.footer-section {
+  padding: 20%;
+  background-color: #008080;
+  color: white;
+  text-align: center;
+}
+
+.footer-header {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.footer-text {
+  font-size: 1.25rem;
+  margin-top: 20px;
+  color: white;
+}
+
+.action-card {
+  cursor: pointer; /* Makes it clear it's clickable */
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Remove underline from links */
+}
+
+.action-card:hover {
+  opacity: 0.9; /* Subtle hover effect */
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button {
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+  transform: scale(1.05);
+}
+

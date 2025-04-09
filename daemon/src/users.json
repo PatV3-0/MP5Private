@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "string",
+    "username": "string",
+    "admin": "boolean",
+    "name": "string",
+    "surname": "string",
+    "email": "string",
+    "password": "string hased password",
+    "profileImage": "string url",
+    "databases": [
+      "string array of db ids"
+    ],
+    "saveddatabases": [
+      "string"
+    ],
+    "followers": [
+      "string"
+    ],
+    "following": [
+      "string"
+    ]
+  },
+  {
+    "_id": 1,
+    "username": "testUser",
+    "password": "testPass",
+    "email": "test@example.com"
+  },
+  {
+    "_id": 2,
+    "username": "testUser2",
+    "password": "testPass2",
+    "email": "test2@example.com"
+  }
+]

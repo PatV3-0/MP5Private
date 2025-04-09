@@ -1,0 +1,18 @@
+[
+{
+    "_id": "string", 
+    "name": "string", 
+    "owner": "string", 
+    "isPublic": "boolean",
+    "createdAt": "ISO date string", 
+    "updatedAt": "ISO date string", 
+    "description": "string", 
+    "tags": ["string array"],
+    "collections": ["Array of collection folder names"],
+    "permissions": { 
+      "read": ["userID array"], 
+      "write": ["userID array"]
+    },
+    "loaded": "boolean"
+  }
+]

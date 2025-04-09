@@ -1,0 +1,71 @@
+name: JavaScript API CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: rest-api
+
+      - name: Install dotenv
+        run: npm install dotenv
+        working-directory: rest-api
+
+      - name: Install Jest
+        run: npm install --save-dev jest
+        working-directory: rest-api
+
+      - name: Run tests
+        run: npm test
+        working-directory: rest-api
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    if: startsWith(github.ref, 'refs/heads/rest-api') || github.event_name == 'pull_request'
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: rest-api
+
+      - name: Build the project
+        run: npm run build
+        working-directory: rest-api
+
+      - name: Run the API (optional)
+        run: npm start
+        working-directory: rest-api
+
+      - name: Run tests
+        run: npm test
+        working-directory: api

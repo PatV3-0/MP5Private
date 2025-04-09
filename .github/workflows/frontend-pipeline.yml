@@ -1,0 +1,51 @@
+name: Frontend CI Pipeline
+
+on:
+  push:
+    branches: [ "main"]  
+  pull_request:
+    branches: [ "main"]  
+  workflow_dispatch:  # Allow manual triggering of the workflow
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --save-dev
+        working-directory: frontend 
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install linting dependencies
+        run: npm install htmlhint stylelint@^16.13.0 stylelint-config-standard@^37.0.0 --save-dev
+        working-directory: frontend  
+      - name: Lint HTML files
+        run: npx htmlhint src/**/*.html
+        working-directory: frontend
+
+      - name: List files in the css directory
+        run: ls src/css
+        working-directory: frontend
+
+      - name: Lint CSS files
+        run: npx stylelint src/css/**/*.css --fix
+        working-directory: frontend
+      

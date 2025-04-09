@@ -1,0 +1,18 @@
+[
+    {
+        "_id": "0-0-1", 
+        "name": "even-cooler-db", 
+        "owner": "0", 
+        "isPublic": true,
+        "createdAt": "ISO date string", 
+        "updatedAt": "ISO date string", 
+        "description": "string", 
+        "tags": ["string array"],
+        "collections": ["coolerColl"],
+        "permissions": { 
+          "read": ["userID array"], 
+          "write": ["userID array"]
+        },
+        "loaded": "boolean"
+      }
+    ]

@@ -1,0 +1,28 @@
+[
+  {
+    "_id": 2001,
+    "name": "vanshTest2",
+    "owner": "000002",
+    "isPublic": false,
+    "createdAt": "2025-03-10T13:06:50.668Z",
+    "updatedAt": "2025-03-10T13:06:50.670Z",
+    "description": "",
+    "tags": [],
+    "collections": [
+      {
+        "_id": "000001",
+        "name": "vanshTest3",
+        "documents": []
+      }
+    ],
+    "permissions": {
+      "read": [
+        "000002"
+      ],
+      "write": [
+        "000002"
+      ]
+    },
+    "loaded": false
+  }
+]
