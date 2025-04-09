@@ -2,9 +2,9 @@ name: API CI Pipeline
 
 on:
   push:
-    branches: [ "api" ]
+    branches: [ "rest-api" ]
   pull_request:
-    branches: [ "api" ]
+    branches: [ "rest-api" ]
   workflow_dispatch:
 
 jobs:
