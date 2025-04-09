@@ -551,4 +551,4 @@ app.listen(PORT, () => console.log(`REST API listening on port ${PORT}`));
 // });
 
 
-export {app};
+// export {app, server, sendToDaemon};
