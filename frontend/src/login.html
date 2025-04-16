@@ -10,17 +10,17 @@
 </head>
 <body>
   <main class="login-container">
-    <section class="form-section">
+    <div class="login" id="loginform">
       <h1 class="welcome-heading">Welcome to udata</h1>
 
-      <form>
+      <form action="LoginServlet" method="post">
         <div class="input-group">
           <label for="username" class="input-label">Username</label>
           <div class="input-container">
             <input
-              type="username"
+              type="text"
               id="username"
-              placeholder="Jongisapho Ndeya"
+              placeholder="Username"
               class="form-input"
               aria-label="username"
               required

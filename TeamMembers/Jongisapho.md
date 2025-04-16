@@ -2,7 +2,7 @@ Jongisapho Ndeya 22625926
 
 About me
 
-I am a computer science student with a passion for coding,I am an aspiring software Engineer .
+I am a computer science student with a passion for coding,I am an aspiring Software Engineer .
 
 Contact me
 
