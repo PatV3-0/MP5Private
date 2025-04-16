@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>udata Login Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&family=Inter:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="loginStyle.css">
+  
+</head>
+<body>
+  <main class="login-container">
+    <div class="login" id="loginform" style="display:flex">
+      <h1 class="welcome-heading">Welcome to udata</h1>
+
+    <form action="LoginServlet" method="post">
+        <div class="input-group">
+          <label for="username" class="input-label">Username</label>
+          <div class="input-container">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              class="form-input"
+              aria-label="username"
+              required
+            />
+            <button type="button" class="input-button" aria-label="Email icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bb8ca7ff46bc829258a5ccceee68307ce964beab" alt="Email" class="button-icon" />
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password" class="input-label">Password</label>
+          <div class="input-container">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              class="form-input"
+              aria-label="Password"
+              required
+              onkeyup="checkPassword()"
+            />
+            <button type="button" class="input-button" aria-label="Password icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ba08c6e6cd5713b4d208429a5ad6d512376d44f6" alt="Password" class="button-icon" />
+            </button>
+            
+          </div>
+        </div>
+        <p id="passwordMsg" class="errorMsg"></p>
+
+        <p class="account-text"><a href="#" onclick="window.location.href='Register.html'">Dont have an account ?</a></p>
+        
+        <div class="button-group">
+          <button type="button" class="primary-button" onclick="window.location.href='Register.html'">Sign up</button>
+          <button type="submit" class="primary-button">Login</button>
+        </div>
+        <p id="errorMessage" class="errorMsg"></p>
+    </form>
+
+      <div class="social-container">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0254e7d353d53c26b1dcf3c5fcbdee80a6ef6cbd" alt="Social Icons" class="social-icons" />
+      </div>
+      <p class="account-text-2"><a href="passwordRecovery.html">Forgot password ?</a></p>
+
+      
+    </section>
+</div>
+
+    
+    <section class="brand-section">
+      <h2 class="brand-logo">udata</h2>
+      <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+      <img class = "our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+    </section>
+  </main>
+<script>
+     function toggleForms(){
+                let loginform = document.getElementById('loginform');
+                loginform.style.display = loginform.style.display === "block" ? "none" : "block";
+            }
+     function checkPassword() {
+            let password = document.getElementById("password").value;
+            let passwordMessage = document.getElementById("passwordMsg");
+        
+            
+            let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!regex.test(password)) {
+                passwordMessage.textContent = "Password must be at least 8 characters long, contain a capital letter, a number, and a special character.";
+                passwordMessage.style.color = "red";
+            }else{
+                passwordMessage.textContent = "";
+            }
+
+
+        }
+</script>
+</body>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="registerStyle.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="RegisterScript.js"></script> 
+  </head>
+  <body>
+    <main class="signup-container">
+      <div class="signup-wrapper">
+        <section class="form-section">
+          <h1 class="form-title">Sign up</h1>
+          <form class="signup-form" action="RegisterServlet" method="post">
+            <div class="form-group">
+              <label for="userName" class="input-label" >Full Name</label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="fullName"
+                  id="firstname"
+                  placeholder="Full Name"
+                  class="form-input"
+                  required
+                />
+                <div class="input-icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastname" class="input-label">Last Name</label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="Last Name"
+                  class="form-input"
+                  required
+                />
+                <div class="input-icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="input-label">Username</label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="username"
+                  class="form-input"
+                  required
+                />
+                <div class="input-icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                    </svg>                      
+              </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="input-label">Email</label>
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="e.g u999999@tuks.co.za"
+                  class="form-input"
+                  required
+                />
+                <div class="input-icon-container">
+                  <svg
+                    width="30"
+                    height="29"
+                    viewBox="0 0 30 29"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon-email"
+                  >
+                    <g clip-path="url(#clip0_email)">
+                      <path
+                        d="M4.31245 4.02625L26.0395 4.02625C26.3596 4.02625 26.6667 4.15153 26.893 4.37454C27.1194 4.59755 27.2466 4.90001 27.2466 5.21539V24.2417C27.2466 24.5571 27.1194 24.8596 26.893 25.0826C26.6667 25.3056 26.3596 25.4309 26.0395 25.4309H4.31245C3.99232 25.4309 3.6853 25.3056 3.45893 25.0826C3.23256 24.8596 3.10539 24.5571 3.10539 24.2417L3.10539 5.21539C3.10539 4.90001 3.23256 4.59755 3.45893 4.37454C3.6853 4.15153 3.99232 4.02625 4.31245 4.02625ZM24.8325 9.06585L15.2629 17.5088L5.51951 9.03969L5.51951 23.0526H24.8325V9.06585ZM6.13632 6.40454L15.2496 14.3266L24.2313 6.40454L6.13632 6.40454Z"
+                        fill="white"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_email">
+                        <rect
+                          width="28.9694"
+                          height="28.5395"
+                          fill="white"
+                          transform="translate(0.691658 0.458862)"
+                        ></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+              <label for="password" class="input-label">Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Choose a strong password"
+                  class="form-input"
+                  required
+                  onkeyup="checkPassword()"
+                />
+                <div class="input-icon-container">
+                  <svg
+                    width="29"
+                    height="30"
+                    viewBox="0 0 29 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon-password"
+                  >
+                    <g clip-path="url(#clip0_password)">
+                      <path
+                        d="M22.9339 12.1193H24.141C24.4611 12.1193 24.7682 12.247 24.9945 12.4743C25.2209 12.7015 25.3481 13.0098 25.3481 13.3312V25.4505C25.3481 25.772 25.2209 26.0802 24.9945 26.3075C24.7682 26.5348 24.4611 26.6625 24.141 26.6625H4.82806C4.50793 26.6625 4.20091 26.5348 3.97454 26.3075C3.74817 26.0802 3.621 25.772 3.621 25.4505L3.621 13.3312C3.621 13.0098 3.74817 12.7015 3.97454 12.4743C4.20091 12.247 4.50793 12.1193 4.82806 12.1193H6.03512V10.9074C6.03512 9.79328 6.25367 8.69012 6.67829 7.66085C7.10292 6.63158 7.72529 5.69636 8.50989 4.90859C9.2945 4.12083 10.226 3.49593 11.2511 3.0696C12.2762 2.64326 13.3749 2.42383 14.4845 2.42383C15.5941 2.42383 16.6929 2.64326 17.718 3.0696C18.7431 3.49593 19.6746 4.12083 20.4592 4.90859C21.2438 5.69636 21.8661 6.63158 22.2908 7.66085C22.7154 8.69012 22.9339 9.79328 22.9339 10.9074V12.1193ZM6.03512 14.5431L6.03512 24.2386H22.9339V14.5431L6.03512 14.5431ZM13.2775 16.967H15.6916L15.6916 21.8147H13.2775L13.2775 16.967ZM20.5198 12.1193V10.9074C20.5198 9.30023 19.884 7.75893 18.7521 6.62253C17.6203 5.48612 16.0852 4.84769 14.4845 4.84769C12.8839 4.84769 11.3488 5.48612 10.2169 6.62253C9.0851 7.75893 8.44924 9.30023 8.44924 10.9074V12.1193L20.5198 12.1193Z"
+                        fill="white"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_password">
+                        <rect
+                          width="28.9694"
+                          height="29.0864"
+                          fill="white"
+                        ></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <p id="passwordMsg" class="errorMsg"></p>
+            <div class="form-group">
+              <label for="cpassword" class="input-label">Confirm Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="cpassword"
+                  name="cpassword"
+                  placeholder="Confirm Your Password"
+                  class="form-input"
+                  required
+                  onkeyup="checkPassword()"
+                />
+                <div class="input-icon-container">
+                  <svg
+                    width="29"
+                    height="30"
+                    viewBox="0 0 29 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon-password"
+                  >
+                    <g clip-path="url(#clip0_password)">
+                      <path
+                        d="M22.9339 12.1193H24.141C24.4611 12.1193 24.7682 12.247 24.9945 12.4743C25.2209 12.7015 25.3481 13.0098 25.3481 13.3312V25.4505C25.3481 25.772 25.2209 26.0802 24.9945 26.3075C24.7682 26.5348 24.4611 26.6625 24.141 26.6625H4.82806C4.50793 26.6625 4.20091 26.5348 3.97454 26.3075C3.74817 26.0802 3.621 25.772 3.621 25.4505L3.621 13.3312C3.621 13.0098 3.74817 12.7015 3.97454 12.4743C4.20091 12.247 4.50793 12.1193 4.82806 12.1193H6.03512V10.9074C6.03512 9.79328 6.25367 8.69012 6.67829 7.66085C7.10292 6.63158 7.72529 5.69636 8.50989 4.90859C9.2945 4.12083 10.226 3.49593 11.2511 3.0696C12.2762 2.64326 13.3749 2.42383 14.4845 2.42383C15.5941 2.42383 16.6929 2.64326 17.718 3.0696C18.7431 3.49593 19.6746 4.12083 20.4592 4.90859C21.2438 5.69636 21.8661 6.63158 22.2908 7.66085C22.7154 8.69012 22.9339 9.79328 22.9339 10.9074V12.1193ZM6.03512 14.5431L6.03512 24.2386H22.9339V14.5431L6.03512 14.5431ZM13.2775 16.967H15.6916L15.6916 21.8147H13.2775L13.2775 16.967ZM20.5198 12.1193V10.9074C20.5198 9.30023 19.884 7.75893 18.7521 6.62253C17.6203 5.48612 16.0852 4.84769 14.4845 4.84769C12.8839 4.84769 11.3488 5.48612 10.2169 6.62253C9.0851 7.75893 8.44924 9.30023 8.44924 10.9074V12.1193L20.5198 12.1193Z"
+                        fill="white"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_password">
+                        <rect
+                          width="28.9694"
+                          height="29.0864"
+                          fill="white"
+                        ></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <p id="confirmMsg" class="errorMsg"></p>
+
+            <button type="submit" class="submit-button">Register</button>
+            <p><a href="login.html" >Already have an account? Login.</a></p>
+            <div class="social-container">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0254e7d353d53c26b1dcf3c5fcbdee80a6ef6cbd" alt="Social Icons" class="social-icons" />
+              </div>
+            <p class="brand-text">udata</p>
+          </form>
+        </section>
+
+        <aside class="sidebar">
+          <div class="sidebar-decoration"></div>
+          <h2 class="sidebar-brand">udata</h2>
+          <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+      <img class = "our-img-2"src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+          </div>
+        </aside>
+      </div>
+    </main>
+    <script>
+      
+
+      function checkPassword() {
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("cpassword").value;
+      let passwordMessage = document.getElementById("passwordMsg");
+      let confirmMessage = document.getElementById("confirmMsg");
+      
+      let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      
+      if (!regex.test(password)) {
+          passwordMessage.textContent = "Password must be at least 8 characters long, contain a capital letter, a number, and a special character.";
+          passwordMessage.style.color = "red";
+      } else {
+          passwordMessage.textContent = "Password is strong.";
+          passwordMessage.style.color = "green";
+      }
+
+      if (confirmPassword !== "" && password !== confirmPassword) {
+          confirmMessage.textContent = "Passwords do not match.";
+          confirmMessage.style.color = "red";
+      } else if (confirmPassword !== "") {
+          confirmMessage.textContent = "Passwords match.";
+          confirmMessage.style.color = "green";
+      } else {
+          confirmMessage.textContent = "";
+      }
+  }
+
+  function validatePasswords() {
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("cpassword").value;
+      let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      
+      if (!regex.test(password)) {
+          alert("Password does not meet the requirements.");
+          return false;
+      }
+      if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return false;
+      }
+      return true;
+  }
+    </script>
+  </body>
+</html>
