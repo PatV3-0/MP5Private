@@ -18,10 +18,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Adjust as needed
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
+        working-directory: rest-api
 
       - name: Lint code
         run: |
@@ -30,19 +31,21 @@ jobs:
           else
             echo "No ESLint config found; skipping linting"
           fi
+        working-directory: rest-api
 
       - name: Run unit tests
         run: npm test
+        working-directory: rest-api
 
-      - name: Generate coverage report (if configured)
-        run: |
-          if [ -f jest.config.js ] || [ -f jest.config.ts ]; then
-            npx jest --coverage
-          elif [ -d coverage ]; then
-            echo "Coverage output exists"
-          else
-            echo "No coverage tools found; skipping"
-          fi
+      - name: Generate coverage report
+        run: npm test -- --coverage
+        working-directory: rest-api
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-coverage
+          path: rest-api/coverage/
 
       - name: Build API (only if tests pass)
         run: |
@@ -53,3 +56,4 @@ jobs:
           else
             echo "No build step detected; skipping"
           fi
+        working-directory: rest-api
