@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Database Viewer</title>
+  <link rel="stylesheet" href="dbstyle.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .user-card-header {
+      cursor: pointer;
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .user-card-content { display: none; padding: 0 1rem 1rem; border-left: 2px solid #4CAF50; }
+    .edit-controls button { margin-right: 10px; }
+    .add-entry-control {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .add-entry-control button {
+      background-color: #2196F3;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .add-entry-control button:hover {
+      background-color: #1976D2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="databaseDisplay"></div>
+  <script>
+    const currentUser = "oneEyeCretin";
+    const dummyData = [
+      {
+        _id: "1",
+        owner: "oneEyeCretin",
+        username: "gamer001",
+        name: "Alex Hunter",
+        friends: ["Liam Swift", "Emily Storm"],
+        employment: "Game Developer",
+        meta: { created: "2025-01-05", lastLogin: "2025-04-02" }
+      },
+      {
+        _id: "2",
+        owner: "oneEyeCretin",
+        username: "loneWolf",
+        name: "Liam Swift",
+        friends: ["Alex Hunter"],
+        employment: "Freelance Writer",
+        meta: { created: "2025-02-15", lastLogin: "2025-03-28" }
+      }
+    ];
+    const container = document.getElementById("databaseDisplay");
+
+    function renderAllData() {
+      container.innerHTML = `<h1>User Database</h1><p>This is a dynamic database viewer showing users and their information.</p><hr />`;
+      dummyData.forEach((data, index) => {
+        const isOwner = currentUser === data.owner;
+        container.innerHTML += `
+          <div class="user-card">
+            <div class="user-card-header" onclick="toggleContent('${data._id}')">
+              <span>${data.name}</span>
+              <span>@${data.username}</span>
+            </div>
+            <div class="user-card-content" id="content-${data._id}">
+              <div><strong>Employment:</strong> ${data.employment}</div>
+              
+              <!-- Collapse array if it's an array -->
+              <div><strong>Friends:</strong> 
+                <span id="friends-collapse-${data._id}" onclick="toggleArray('${data._id}', 'friends')">
+                  ${data.friends.length} Friends (Click to expand)
+                </span>
+                <div id="friends-list-${data._id}" style="display:none;">
+                  ${data.friends.join(", ")}
+                </div>
+              </div>
+              
+              <div><strong>Meta:</strong> Created: ${data.meta.created}, Last Login: ${data.meta.lastLogin}</div>
+              
+              ${isOwner ? `
+                <div class="edit-controls">
+                  <button onclick="editDatabaseEntry('${data._id}')">Edit</button>
+                  <button onclick="deleteDatabaseEntry('${data._id}')">Delete</button>
+                  <button onclick="moveUp('${data._id}')">⬆️</button>
+                  <button onclick="moveDown('${data._id}')">⬇️</button>
+                  <button onclick="addToEntry('${data._id}')">Add to Entry</button>
+                </div>` : ""}
+            </div>
+          </div>`;
+      });
+      container.innerHTML += `<div class="add-entry-control"><button onclick="addDatabaseEntry()">Add New Entry</button></div>`;
+    }
+
+    function toggleArray(id, field) {
+      const list = document.getElementById(`${field}-list-${id}`);
+      const collapseText = document.getElementById(`${field}-collapse-${id}`);
+      
+      if (list.style.display === "none") {
+        list.style.display = "block";
+        collapseText.innerText = `Hide ${field.charAt(0).toUpperCase() + field.slice(1)} (Click to collapse)`;
+      } else {
+        list.style.display = "none";
+        collapseText.innerText = `${dummyData.find(data => data._id === id)[field].length} ${field.charAt(0).toUpperCase() + field.slice(1)} (Click to expand)`;
+      }
+    }
+
+
+    function toggleContent(id) {
+      const content = document.getElementById(`content-${id}`);
+      content.style.display = content.style.display === "none" ? "block" : "none";
+    }
+
+    function addDatabaseEntry() {
+      const name = prompt("Enter name:");
+      const username = prompt("Enter username:");
+      if (name && username) {
+        dummyData.push({
+          _id: Date.now().toString(),
+          owner: currentUser,
+          username,
+          name,
+          friends: [],
+          employment: "Unknown",
+          meta: {
+            created: new Date().toISOString().split("T")[0],
+            lastLogin: new Date().toISOString().split("T")[0]
+          }
+        });
+        renderAllData();
+      }
+    }
+
+    function editDatabaseEntry(id) {
+      const entry = dummyData.find(e => e._id === id);
+      const cardContent = document.getElementById(`content-${id}`);
+      
+      // Create a form with input fields for editing
+      cardContent.innerHTML = `
+        <div><strong>Employment:</strong> <input type="text" id="edit-employment-${id}" value="${entry.employment}" /></div>
+        <div><strong>Friends:</strong> <input type="text" id="edit-friends-${id}" value="${entry.friends.join(", ")}" /></div>
+        <div><strong>Meta:</strong> Created: <input type="date" id="edit-created-${id}" value="${entry.meta.created}" />
+              Last Login: <input type="date" id="edit-lastLogin-${id}" value="${entry.meta.lastLogin}" /></div>
+        <div><strong>Username:</strong> <input type="text" id="edit-username-${id}" value="${entry.username}" /></div>
+        <div><strong>Name:</strong> <input type="text" id="edit-name-${id}" value="${entry.name}" /></div>
+        <div>
+          <button onclick="saveDatabaseEntry('${id}')">Save</button>
+          <button onclick="cancelEdit('${id}')">Cancel</button>
+        </div>
+      `;
+    }
+
+    function saveDatabaseEntry(id) {
+      const entry = dummyData.find(e => e._id === id);
+
+      // Get the updated values from the input fields
+      entry.name = document.getElementById(`edit-name-${id}`).value;
+      entry.username = document.getElementById(`edit-username-${id}`).value;
+      entry.employment = document.getElementById(`edit-employment-${id}`).value;
+      entry.meta.created = document.getElementById(`edit-created-${id}`).value;
+      entry.meta.lastLogin = document.getElementById(`edit-lastLogin-${id}`).value;
+      entry.friends = document.getElementById(`edit-friends-${id}`).value.split(",").map(f => f.trim());
+
+      renderAllData();  // Re-render the data to reflect changes
+    }
+
+    function cancelEdit(id) {
+      renderAllData();  // Just re-render to discard changes and go back to viewing mode
+    }
+
+
+
+    function deleteDatabaseEntry(id) {
+      const index = dummyData.findIndex(e => e._id === id);
+      if (confirm("Delete this entry?")) {
+        dummyData.splice(index, 1);
+        renderAllData();
+      }
+    }
+
+    function moveUp(id) {
+      const index = dummyData.findIndex(e => e._id === id);
+      if (index > 0) {
+        [dummyData[index - 1], dummyData[index]] = [dummyData[index], dummyData[index - 1]];
+        renderAllData();
+      }
+    }
+
+    function moveDown(id) {
+      const index = dummyData.findIndex(e => e._id === id);
+      if (index < dummyData.length - 1) {
+        [dummyData[index + 1], dummyData[index]] = [dummyData[index], dummyData[index + 1]];
+        renderAllData();
+      }
+    }
+
+    function addToEntry(id) {
+      const entry = dummyData.find(e => e._id === id);
+      const key = prompt("Enter field to add to (e.g., friends):");
+      if (key && Array.isArray(entry[key])) {
+        const item = prompt(`Enter value to add to ${key} array:`);
+        if (item) {
+          entry[key].push(item);
+          renderAllData();
+        }
+      } else {
+        alert("Field either not found or is not an array.");
+      }
+    }
+
+    renderAllData();
+  </script>
+</body>
+</html>

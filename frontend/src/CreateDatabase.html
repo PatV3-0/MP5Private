@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Database</title>
+  <link rel="stylesheet" href="dbcreatorstyle.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 2rem;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Create a New Database</h1>
+    <form id="createDbForm">
+      <label for="dbName">Database Name</label>
+      <input type="text" id="dbName" name="dbName" required />
+
+      <label for="dbDescription">Description</label>
+      <textarea id="dbDescription" name="dbDescription" rows="4" required></textarea>
+
+      <label for="visibility">Visibility</label>
+      <select id="visibility" name="visibility" required>
+        <option value="private">Private</option>
+        <option value="public">Public</option>
+      </select>
+
+      <label for="tags">Tags (comma-separated)</label>
+      <input type="text" id="tags" name="tags" placeholder="e.g., finance, music, personal" />
+
+      <button type="submit">Create Database</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("createDbForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const dbName = document.getElementById("dbName").value.trim();
+      const dbDescription = document.getElementById("dbDescription").value.trim();
+      const visibility = document.getElementById("visibility").value;
+      const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
+
+      const newDatabase = {
+        name: dbName,
+        description: dbDescription,
+        visibility: visibility,
+        tags: tags,
+        createdAt: new Date().toISOString()
+        // Add more fields as needed
+      };
+
+      // Simulate saving (replace this with a real API call)
+      console.log("Database created:", newDatabase);
+
+      // Redirect or give feedback
+      alert(`Database "${dbName}" created successfully!`);
+      window.location.href = `database.html?id=${encodeURIComponent(newDbId)}`;
+    });
+  </script>
+</body>
+</html>

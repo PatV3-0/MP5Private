@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profilestyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profileHeader">
+            <img src="profile-placeholder.jpg" alt="User Avatar" class="avatar" id="profileImage">
+            <h1 id="username">John Doe</h1>
+            <p id="userBio">I am John, I am boring. I am an accountant.</p>
+        </div>
+
+        <!--Settings button (only visible if it's their own profile)-->
+        <div class="settings" id="settingsSection">
+            <button id="settingsButton" onclick="toggleSettings()">Settings</button>
+        </div>
+
+        <!--Settings menu (hidden by default)-->
+        <div id="settingsMenu" class="settingsMenu" style="display: none;">
+            <h2>Settings</h2>
+            <label for="profileImgInp">Change Profile Image:</label>
+            <input type="file" id="profileImgInp" accept="image/*">
+
+            <label for="usernameInp">Username:</label>
+            <input type="text" id="usernameInp" placeholder="Enter a new username">
+
+            <label for="bioInp">Description:</label>
+            <textarea id="bioInp" placeholder="Update your bio..."></textarea>
+
+            <label for="darkModeToggle">Dark Mode:</label>
+            <input type="checkbox" id="darkModeToggle">
+
+            <button id="saveSettings">Save</button>
+        </div>
+
+        <div id="friendButtonContainer">
+            <button id="friendButton" style="display: none;"></button>
+        </div>
+
+        <!--Databases Section-->
+        <div class="databases">
+            <h2>Public Databases</h2>
+            <div class="databaselist" id="databaseList">
+                <!-- Databases dynamically loaded here -->
+            </div>
+            <button id="viewLibrary" style="display: none;">View All</button>
+        </div>
+
+        <!-- Friends Section -->
+        <div class="friends">
+            <h2>Friends</h2>
+            <p id="friendsCount">Friends: 10</p>
+            <div class="friendslist" id="friendsList">
+                <!-- Friends dynamically loaded here -->
+            </div>
+            <button id="viewFriends" style="display: none;">View All</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleSettings() {
+            let settingsMenu = document.getElementById("settingsMenu");
+            if (settingsMenu.style.display === "none") {
+                settingsMenu.style.display = "block";
+            } else {
+                settingsMenu.style.display = "none";
+            }
+        }
+
+        document.getElementById("saveSettings").addEventListener("click", function() {
+            // Update Username
+            let newUsername = document.getElementById("usernameInp").value;
+            if (newUsername.trim() !== "") {
+                document.getElementById("username").textContent = newUsername;
+            }
+
+            // Update Bio
+            let newBio = document.getElementById("bioInp").value;
+            if (newBio.trim() !== "") {
+                document.getElementById("userBio").textContent = newBio;
+            }
+
+            // Toggle Dark Mode
+            let darkMode = document.getElementById("darkModeToggle").checked;
+            document.body.style.backgroundColor = darkMode ? "#333" : "#fff";
+            document.body.style.color = darkMode ? "#fff" : "#000";
+
+            // Hide settings menu after saving
+            document.getElementById("settingsMenu").style.display = "none";
+        });
+
+        // Change Profile Picture
+        document.getElementById("profileImgInp").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profileImage").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Example: Backend should provide these variables dynamically
+        let isOwnProfile = false;  // Change this based on login session
+        let isFriend = false;      // Change this based on friendship status
+        let totalFriends = 10;     // Example count
+        let databases = [
+            { name: "Database 1", public: true },
+            { name: "Database 2", public: true },
+            { name: "Database 3", public: true },
+            { name: "Database 4", public: true },
+            { name: "Database 5", public: true },
+            { name: "Database 6", public: true }
+        ];
+        let friends = [
+            {name: "Kyle"},
+            {name: "Joe"},
+            {name: "Steven"},
+            {name: "Tim"}
+        ]
+
+        // Handle profile visibility
+        function adjustProfileView() {
+            // Hide settings if not their profile
+            if (!isOwnProfile) {
+                document.getElementById("settingsSection").style.display = "none";
+                document.getElementById("settingsMenu").style.display = "none";
+            }
+
+            // Handle friend button
+            let friendButton = document.getElementById("friendButton");
+            if (!isOwnProfile) {
+                friendButton.style.display = "block";
+                updateFriendButton();
+            }
+
+            // Adjust friends section
+            let friendsList = document.getElementById("friendsList");
+            let friendsCount = document.getElementById("friendsCount");
+            friendsCount.textContent = `Friends: ${totalFriends}`;
+            
+            if (!isOwnProfile) {
+                friendsList.style.display = "none";  // Hide full list
+                document.getElementById("viewFriends").style.display = "none";
+            }
+
+            // Adjust databases shown
+            let databaseList = document.getElementById("databaseList");
+            databaseList.innerHTML = ""; // Clear any existing items
+            let databasesToShow = isFriend ? databases : databases.slice(0, 4); 
+
+            databasesToShow.forEach(db => {
+                let dbElement = document.createElement("div");
+                dbElement.classList.add("databaseitem");
+                dbElement.textContent = db.name;
+                databaseList.appendChild(dbElement);
+            });
+
+            if (isFriend && databases.length > 4) {
+                document.getElementById("viewLibrary").style.display = "block";
+            }
+        }
+
+        function updateFriendButton() {
+            let friendButton = document.getElementById("friendButton");
+            if (isFriend) {
+                friendButton.textContent = "Unfriend";
+                friendButton.classList.add("unfriend");
+                friendButton.classList.remove("add-friend");
+            } else {
+                friendButton.textContent = "Add Friend";
+                friendButton.classList.add("add-friend");
+                friendButton.classList.remove("unfriend");
+            }
+        }
+
+        document.getElementById("friendButton").addEventListener("click", function() {
+            isFriend = !isFriend;
+            updateFriendButton();
+            totalFriends += isFriend ? 1 : -1;
+            document.getElementById("friendsCount").textContent = `Friends: ${totalFriends}`;
+
+            // TODO: Send request to the backend to update friendship status
+            console.log(isFriend ? "Added as friend" : "Removed as friend");
+        
+        });
+
+        // Call function on page load
+        adjustProfileView();
+    </script>
+</body>
+</html>

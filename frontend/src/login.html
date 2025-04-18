@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="loginstyle.css">
+    </head>
+    <body>
+         <div class="container">
+            <div class="login" id="loginform">
+                <h2>Login</h2>
+                <!--This action will be finalized to work with the api in js-->
+                <form action="LoginServlet" method="post">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                    <p id="errorMessage" class="errorMsg"></p>
+                    <p><a href="#" onclick="toggleForms()">Don't have an account? Register.</a></p>
+                    <p><a href="passwordRecovery.html">Forgot password?</a></p>
+                </form>
+            </div>
+
+            <div class="register" id="registerform" style="display: none;">
+                <h2>Register</h2>
+                <!--This action will be finalized to work with the api in js-->
+                <form action="RegisterServlet" method="post">
+                    <input type="text" name="fullName" placeholder="Full Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Choose a strong passwrd" required onkeyup="checkPassword()">
+                    <p id="passwordMsg" class="errorMsg"></p>
+                    <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your password" required onkeyup="checkPassword()">
+                    <p id="confirmMsg" class="errorMsg"></p>
+                    <button type="submit">Register</button>
+                    <p><a href="#" onclick="toggleForms()">Already have an account? Login.</a></p>
+                </form>
+            </div>
+         </div>
+
+         <script>
+            function toggleForms(){
+                let loginform = document.getElementById('loginform');
+                let registerform = document.getElementById('registerform');
+                loginform.style.display = loginform.style.display === "none" ? "block" : "none";
+                registerform.style.display = registerform.style.display === "none" ? "block" : "none";
+            }
+
+            function checkPassword() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("cpassword").value;
+            let passwordMessage = document.getElementById("passwordMsg");
+            let confirmMessage = document.getElementById("confirmMsg");
+            
+            let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!regex.test(password)) {
+                passwordMessage.textContent = "Password must be at least 8 characters long, contain a capital letter, a number, and a special character.";
+                passwordMessage.style.color = "red";
+            } else {
+                passwordMessage.textContent = "Password is strong.";
+                passwordMessage.style.color = "green";
+            }
+
+            if (confirmPassword !== "" && password !== confirmPassword) {
+                confirmMessage.textContent = "Passwords do not match.";
+                confirmMessage.style.color = "red";
+            } else if (confirmPassword !== "") {
+                confirmMessage.textContent = "Passwords match.";
+                confirmMessage.style.color = "green";
+            } else {
+                confirmMessage.textContent = "";
+            }
+        }
+
+        function validatePasswords() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("cpassword").value;
+            let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!regex.test(password)) {
+                alert("Password does not meet the requirements.");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+         </script>
+    </body>
+</html>

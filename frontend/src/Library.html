@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="lbstyle.css">
+    <style>
+        .library-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .library-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .database-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .database-card {
+            padding: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .database-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f8f8f8;
+        }
+
+        .database-card h3 {
+            margin: 0 0 0.5rem;
+        }
+
+        .database-card p {
+            margin: 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="library-container">
+        <h1 class="library-title">Your Database Library</h1>
+        <div class="database-grid" id="libraryGrid">
+            <!-- All databases will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const ownedDatabases = [
+            // { name: "Customer Data", description: "A database of customer information." },
+            // { name: "Inventory", description: "Tracks product inventory levels." }
+        ];
+    
+        const savedDatabases = [
+            // { name: "Team Projects", description: "Collaborative workspace for project tracking." },
+            // { name: "Analytics", description: "View dashboards and data insights." }
+        ];
+    
+        function loadLibrary() {
+            const grid = document.getElementById("libraryGrid");
+    
+            const allDatabases = [...ownedDatabases, ...savedDatabases];
+    
+            if (allDatabases.length === 0) {
+                const createCard = document.createElement("div");
+                createCard.classList.add("database-card");
+                createCard.style.textAlign = "center";
+                createCard.innerHTML = `
+                    <div style="font-size: 3rem; color: #555;">+</div>
+                    <h3>Create New Database</h3>
+                `;
+                createCard.onclick = () => window.location.href = "CreateDatabase.html";
+                grid.appendChild(createCard);
+            } else {
+                allDatabases.forEach(db => {
+                    const card = document.createElement("div");
+                    card.classList.add("database-card");
+                    card.innerHTML = `<h3>${db.name}</h3><p>${db.description}</p>`;
+                    card.onclick = () => alert(`Opening ${db.name}`);
+                    grid.appendChild(card);
+                });
+            }
+        }
+    
+        loadLibrary();
+    </script>
+</body>
+</html>
