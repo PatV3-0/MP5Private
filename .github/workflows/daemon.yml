@@ -8,11 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  daemon-unit-tests:
+  test:
     runs-on: ubuntu-latest
+    outputs:
+      tests_passed: ${{ steps.set-status.outputs.tests_passed }}
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           submodules: true
@@ -20,9 +22,9 @@ jobs:
       - name: Update submodules
         run: git submodule update --init --recursive
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
-        with: 
+        with:
           node-version: 18
 
       - name: Install dependencies
@@ -41,10 +43,6 @@ jobs:
         run: npm run lint
         working-directory: daemon
 
-      - name: Build project
-        run: npm run build
-        working-directory: daemon
-
       - name: Run unit tests
         run: npm test
         working-directory: daemon
@@ -58,3 +56,30 @@ jobs:
         with:
           name: daemon-coverage
           path: daemon/coverage/
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    if: success()  # Only runs if test job succeeded
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: daemon
+
+      - name: Build project
+        run: npm run build
+        working-directory: daemon
