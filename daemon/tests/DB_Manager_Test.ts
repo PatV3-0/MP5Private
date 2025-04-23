@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import DatabaseManager from './../src/DatabaseManager';
 //import FileManager from './../src/FileManager';
 
@@ -68,14 +67,8 @@ async function runTests() {
 }
 
 runTests();
-=======
-<<<<<<< Updated upstream
-import DatabaseManager from './../src/DatabaseManager';
-//import FileManager from './../src/FileManager';
-=======
 import DatabaseManager from '../src/DatabaseManager';
 import FileManager from '../src/FileManager';
->>>>>>> Stashed changes
 
 jest.mock('../src/FileManager'); // Mock FileManager
 
@@ -167,4 +160,3 @@ describe('DatabaseManager Unit Tests', () => {
         expect(result).toBe(false);
     });
 });
->>>>>>> Stashed changes
