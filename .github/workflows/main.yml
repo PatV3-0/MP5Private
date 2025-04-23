@@ -35,11 +35,14 @@ jobs:
       run: |
         nc -zv localhost 5000 || (echo "❌ Daemon not responding on port 5000" && exit 1)
 
-    - name: Test REST API (port 3000 with token)
+    - name: Test REST API `/getDatabases` (port 3000 with token)
       env:
         AUTH_TOKEN: ${{ secrets.MP5_SECRET_TOKEN }}
       run: |
-        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $AUTH_TOKEN" http://localhost:3000/some/test/endpoint)
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST http://localhost:3000/getDatabases \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer $AUTH_TOKEN" \
+        -d '{"payload": {"apiKey": "'"$AUTH_TOKEN"'"}}')
         echo "HTTP response: $RESPONSE"
         [ "$RESPONSE" -eq 200 ] || (echo "❌ REST API test failed with code $RESPONSE" && exit 1)
 
