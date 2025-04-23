@@ -2,9 +2,9 @@ name: JavaScript API Pipeline
 
 on:
   push:
-    branches: [ "apidev" ]
+    branches: [apidev]
   pull_request:
-    branches: [ "apidev" ]
+    branches: [apidev]
   workflow_dispatch:
 #seeing if this will actually run 
 jobs:
