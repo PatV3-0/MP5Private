@@ -1,6 +1,7 @@
 {
   "name": "daemon",
   "version": "1.0.0",
+  "type": "module",
   "description": "- nodejs\r - npm",
   "main": "jest.config.js",
   "directories": {
