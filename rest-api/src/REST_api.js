@@ -110,6 +110,14 @@ export const createApp = (sendToDaemon) =>{
     app.post("/register", async (req, res) => {
         const { username, name, surname, email, password, profileImage } = req.body.payload; // Extract data from payload
 
+        if(!username || !name || !surname || !email || !password)
+        {
+          res.status(400).json({
+            error: "User registration failed, please try again."
+          });
+          return;
+        }
+
         try {
             // Hash the password
             // const hashedPass = await hashPassword(password);
@@ -293,7 +301,20 @@ export const createApp = (sendToDaemon) =>{
                 res.json({
                     status: 200 , message : "API key has been revoked successfully."
                 });
-            }else{
+            }
+            else if(response.status === 400)
+            {
+              res.status(400).json({
+                error: "Password incorrect. Please try again."
+            });
+            }
+            else if(response.status === 401)
+            {
+              res.status(401).json({
+                error: "Invalid username or password, please try again."
+              });
+            }
+            else{
                 res.status(response.status).json({
                     error: response.message
                 });
@@ -305,7 +326,6 @@ export const createApp = (sendToDaemon) =>{
                 error:"Failed to revoke the API key, Daemon communication failed."
             })
         }
-
     });
 
     /**

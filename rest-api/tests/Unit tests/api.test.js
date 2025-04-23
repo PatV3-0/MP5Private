@@ -255,10 +255,10 @@ describe("POST /revokeAPIKey", () => {
                 api_key: "validApiKey"
             });
 
-        expect(response.status).toBe(500);
+        expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: 200,
-            message: "API key successfully revoked."
+            message: "API key has been revoked successfully."
         });
     });
 
@@ -274,14 +274,13 @@ describe("POST /revokeAPIKey", () => {
                 api_key: "validApiKey"
             });
 
-        expect(response.status).toBe(400);
+        expect(response.status).toBe(401);
         expect(response.body.error).toBe("Invalid username or password, please try again.");
     });
 
     it("should return 400 if password is incorrect", async () => {
         const mockLoginResponse = { 
-            status: 200, 
-            payload: { hashedPass: "hashedPassword123" }
+            status: 400
         };
         mockSendToDaemon.mockResolvedValue(mockLoginResponse);
         bcrypt.compare.mockResolvedValue(false);
@@ -310,6 +309,6 @@ describe("POST /revokeAPIKey", () => {
             });
 
         expect(response.status).toBe(500);
-        expect(response.body.error).toBe("Failed to revoke the API key.");
+        expect(response.body.error).toBe("Failed to revoke the API key, Daemon communication failed.");
     });
 });
