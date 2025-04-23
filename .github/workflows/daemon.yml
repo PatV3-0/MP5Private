@@ -2,9 +2,9 @@ name: Daemon Pipeline
 
 on:
   push:
-    branches: [dev]
+    branches: [nothere]
   pull_request:
-    branches: [dev]
+    branches: [nothere]
   workflow_dispatch:
 
 jobs:
