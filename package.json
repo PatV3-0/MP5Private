@@ -9,6 +9,7 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
     "@types/node": "^22.13.10",
     "tsx": "^4.19.3"
   }
