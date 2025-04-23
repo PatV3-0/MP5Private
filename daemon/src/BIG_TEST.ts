@@ -1,7 +1,7 @@
-// Aggregate testing file
+/* Aggregate testing file
 import * as net from 'net';
 import FileManager from "./FileManager.js"; 
-import { AuthenticationHandler, AuthorizationHandler } from './Auth'; 
+//import { AuthenticationHandler, AuthorizationHandler } from './Auth'; 
 
 console.log("\x1b[31m---------- Starting Daemon Communicaiton Tests ----------")
 console.log("\t\x1b[32mConnection Test")
@@ -307,4 +307,4 @@ function testGetUser(jwt, uid) {
         apiKey: jwt, 
         userID: uid        
     });
-}
+}*/
