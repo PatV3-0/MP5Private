@@ -32,9 +32,16 @@ jobs:
       run: |
         nc -zv localhost 5000 || (echo "❌ Daemon not responding on port 5000" && exit 1)
 
-    - name: Test REST API (port 3000)
+    - name: Export auth token for Docker
+      run: echo "MP5_SECRET_TOKEN=${{ secrets.MP5_SECRET_TOKEN }}" >> .env
+
+    - name: Test REST API (port 3000 with token)
+      env:
+        AUTH_TOKEN: ${{ secrets.MP5_SECRET_TOKEN }}
       run: |
-        curl -s -o /dev/null -w "%{http_code}" http://localhost:3000 | grep 200 || (echo "❌ REST API test failed" && exit 1)
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $AUTH_TOKEN" http://localhost:3000/some/test/endpoint)
+        echo "HTTP response: $RESPONSE"
+        [ "$RESPONSE" -eq 200 ] || (echo "❌ REST API test failed with code $RESPONSE" && exit 1)
 
     - name: Test Web Frontend (Apache on port 8080)
       run: |
