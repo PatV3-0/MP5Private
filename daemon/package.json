@@ -299,6 +299,7 @@
     "yocto-queue": "^0.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.25.1",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
