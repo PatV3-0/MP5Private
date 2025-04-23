@@ -7,7 +7,7 @@ import FileManager from "./FileManager.js";
 import * as jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import { hashPassword, verifyPassword } from "./encryption.js";
+import { hashPassword/*, verifyPassword */} from "./encryption.js";
 
 ////Auth
 // const KEY = process.env.MP5_SECRET_KEY; // JWT hash key
