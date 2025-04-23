@@ -29,7 +29,7 @@ jobs:
       run: docker compose up --build -d
 
     - name: Wait for services to be ready
-      run: sleep 60
+      run: sleep 15
 
     - name: Test Daemon (port 5000)
       run: |
@@ -43,7 +43,6 @@ jobs:
         echo "HTTP response: $RESPONSE"
         [ "$RESPONSE" -eq 200 ] || (echo "❌ REST API test failed with code $RESPONSE" && exit 1)
       
-
     - name: Test Web Frontend (Apache on port 8080)
       run: |
         curl -s http://localhost:8080 | grep -i "<html" || (echo "❌ Web frontend not served properly" && exit 1)
