@@ -29,7 +29,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ${{ github.workspace }}/daemon
 
       - name: Install dev dependencies
         run: |
