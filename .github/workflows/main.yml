@@ -22,6 +22,9 @@ jobs:
         sudo apt-get update && sudo apt-get install -y dos2unix
         dos2unix setup.sh
 
+    - name: Export auth token for Docker
+      run: echo "MP5_SECRET_TOKEN=${{ secrets.MP5_SECRET_TOKEN }}" > .env
+
     - name: Build and start containers
       run: docker compose up --build -d
 
@@ -31,9 +34,6 @@ jobs:
     - name: Test Daemon (port 5000)
       run: |
         nc -zv localhost 5000 || (echo "❌ Daemon not responding on port 5000" && exit 1)
-
-    - name: Export auth token for Docker
-      run: echo "MP5_SECRET_TOKEN=${{ secrets.MP5_SECRET_TOKEN }}" >> .env
 
     - name: Test REST API (port 3000 with token)
       env:
