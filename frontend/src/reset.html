@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Account Recovery</title>
+        <link rel="stylesheet" href="./styles/resetCSS.css">
+        <style>
+            .error {color: red; font-size: 14px;}
+            .success {color: green; font-size: 14px;}
+        </style>
+    </head>
+    <body>
+        <div class="logo-container">
+            <img src="udata.png" alt="udata logo" class="logo">
+        </div>
+
+        <div class="container">
+            <h2>Password Recovery</h2>
+
+            <div id="reset">
+                <p>Enter your email to receive a password reset link:</p>
+                <input type="email" id="email" placeholder="Enter your email">
+                <button id="requestReset">Send Reset Link</button>
+            </div>
+    
+            <div id="resetpassword" style="display: none;">
+                <p>Enter your new password:</p>
+                <input type="password" id="newpassword" placeholder="New password">
+                <p id="passwordMsg" class="error"></p>
+                <input type="password" id="confirmpassword" placeholder="Confirm password">
+                <p id="confirmMsg" class="error"></p>
+                <button id="resetPassword">Reset Password</button>
+            </div>
+    
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const requestResetSection = document.getElementById("reset");
+                const resetPasswordSection = document.getElementById("resetpassword");
+                const sendResetButton = document.getElementById("requestReset");
+                const resetPasswordButton = document.getElementById("resetPassword");
+                const emailInput = document.getElementById("email");
+                const newPassword = document.getElementById("newpassword");
+                const confirmPassword = document.getElementById("confirmpassword");
+                const passwordMessage = document.getElementById("passwordMsg");
+                const confirmMessage = document.getElementById("confirmMsg");
+                const emailError = document.createElement('p');
+                emailError.className = 'error';
+                emailInput.parentNode.insertBefore(emailError, emailInput.nextSibling);
+        
+                function validateEmail() 
+                {
+                    if(emailInput.value.trim() === '') 
+                    {
+                        emailError.textContent = 'Email is required';
+                        return false;
+                    } 
+                    else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) 
+                    {
+                        emailError.textContent = 'Please enter a valid email address';
+                        return false;
+                    } 
+                    else 
+                    {
+                        emailError.textContent = '';
+                        return true;
+                    }
+                }
+        
+                sendResetButton.addEventListener("click", function (e) 
+                {
+                    e.preventDefault();
+                    if(validateEmail()) 
+                    {
+                        requestResetSection.style.display = "none";
+                        resetPasswordSection.style.display = "block";
+                    }
+                });
+        
+                function validatePassword() 
+                {
+                    const password = newPassword.value;
+                    const hasUpperCase = /[A-Z]/.test(password);
+                    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                    const hasNumber = /\d/.test(password);
+                    const isValidLength = password.length >= 8;
+        
+                    if(isValidLength && hasUpperCase && hasSpecialChar && hasNumber) 
+                    {
+                        passwordMessage.textContent = "Password is valid.";
+                        passwordMessage.className = "success";
+                        return true;
+                    } 
+                    else 
+                    {
+                        passwordMessage.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one special character, and one number.";
+                        passwordMessage.className = "error";
+                        return false;
+                    }
+                }
+        
+                function validateConfirmPassword() 
+                {
+                    if (newPassword.value === confirmPassword.value && newPassword.value !== "") {
+                        confirmMessage.textContent = "Passwords match.";
+                        confirmMessage.className = "success";
+                        return true;
+                    } else {
+                        confirmMessage.textContent = "Passwords do not match.";
+                        confirmMessage.className = "error";
+                        return false;
+                    }
+                }
+        
+                newPassword.addEventListener("input", validatePassword);
+                confirmPassword.addEventListener("input", validateConfirmPassword);
+        
+                resetPasswordButton.addEventListener("click", function () {
+                    if (validatePassword() && validateConfirmPassword()) {
+                        alert("Password reset successfully!");
+                    } else {
+                        alert("Please ensure your password meets all the requirements.");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

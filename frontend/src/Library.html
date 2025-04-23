@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./styles/libraryStyle.css">
+    <script type="module" src="../../js-lib/src/mpdbjs.js"></script>
+    <script type="module" src="./scripts/libraryScript.js"></script>
+
+</head>
+<body>
+    <style>
+        
+        .library-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  
+  .database-section {
+    margin-bottom: 2rem;
+  }
+  
+  .database-section h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .database-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px #2f9d94;
+    ;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .database-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px #ff8c32;
+  }
+  
+  .database-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+  }
+  
+  .database-card p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+
+    </style>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+              <h2 class="brand-logo">udata</h2>
+          <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+          <img class = "our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+            </div>
+            <nav class="nav-menu">
+              <ul class="nav-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text" onclick="window.location.href='index.html'">Home</span>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M3 12h4l3 8l4 -16l3 8h4"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text" onclick="window.location.href='library.html'">Your Library</span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                          d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
+                        ></path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text" onclick="window.location.href='userProfile.html'">Profile</span>
+                  </a>
+                </li>
+                
+              </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+              <a href="#" class="logout-link">
+                <span class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+                    ></path>
+                    <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                  </svg>
+                </span>
+                <span class="nav-text" onclick="window.location.href='login.html'">Log out</span>
+              </a>
+            </div>
+          </aside>
+          <div id="vertical-line" style="background-color: #2f9d94; width: 5px; height: 760px;">
+          </div>
+          <main class="main-content">
+            <section class="settings-panel">
+                <div class="library-container">
+                    <div class="database-section">
+                      <h2 style="margin-right: 200px; color: #2f9d94;">Owned Databases</h2>
+                      <div id="ownedGrid" class="library-grid" style="margin-left: 100px;"></div>
+                    </div>
+                    
+                    <div class="database-section">
+                      <h2 style="margin-right: 200px; color: #2f9d94;">Saved Databases</h2>
+                      <div id="savedGrid" class="library-grid" style="margin-left: 100px;"></div>
+                    </div>
+                  </div>
+            </section>
+            
+        </main>
+    </div>
+</body>
+</html>

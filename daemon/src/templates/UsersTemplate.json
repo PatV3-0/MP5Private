@@ -1,0 +1,16 @@
+[
+    {
+    "_id": "string",
+    "username": "string",
+    "password": "string hased password",
+    "admin": "boolean",
+    "name": "string",
+    "surname": "string",
+    "email": "string",
+    "profileImage": "string url",
+    "databases": ["string array of db ids"],
+    "saveddatabases": ["string"],
+    "followers": ["string"],
+    "following": ["string"]
+    }
+]

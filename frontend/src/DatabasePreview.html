@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Database Viewer</title>
+  <link rel="stylesheet" href="./styles/DatabasePreviewCSS.css" />
+  <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('udata.png') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h3 {
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #037971;
+      padding-left: 0.5rem;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0 0;
+    }
+
+    ul li {
+      padding: 0.3rem 0;
+    }
+
+    .user-card {
+      border-bottom: 1px solid #ddd;
+      padding: 1.5rem 0;
+    }
+
+    .user-card:last-child {
+      border-bottom: none;
+    }
+
+    .user-card-header {
+      cursor: pointer;
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-card-content {
+      display: none;
+      padding: 0 1rem 1rem;
+      border-left: 2px solid #037971;
+    }
+
+    .collapsed {
+      display: none;
+    }
+
+    .edit-controls {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .edit-button,
+    .delete-button,
+    .add-button {
+      background-color: #037971;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .edit-button:hover {
+      background-color: #02645d;
+    }
+
+    .delete-button {
+      background-color: #f44336;
+    }
+
+    .delete-button:hover {
+      background-color: #e53935;
+    }
+
+    .add-button {
+      background-color: #2196F3;
+    }
+
+    .add-button:hover {
+      background-color: #1976D2;
+    }
+
+    .logo-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .logo {
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="databaseDisplay">
+    <!-- Dynamic content goes here -->
+  </div>
+
+  <div class="logo-container">
+    <img src="udata.png" alt="udata logo" class="logo">
+  </div>
+
+  <script src="mpdbjs.js"></script>
+  <script>
+    const container = document.getElementById("databaseDisplay");
+    const params = new URLSearchParams(window.location.search);
+    const dbId = 2001; // or use: params.get("id");
+    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaWNlIiwiZW1haWwiOiJhbGljZUBleGFtcGxlLmNvbSIsImFkbWluIjpmYWxzZSwiZGF0ZSI6MTc0NDkxMzc1NzI5MCwiaWF0IjoxNzQ0OTEzNzU3LCJleHAiOjE3NDUwODY1NTd9.OFMCgyxgimYQ7DeMfEz4EUMLgtTNP9FJhLyMKbUbSDM';
+
+    const client = new MPDBClient("http://localhost:3000");
+
+    async function loadAndRenderDatabase() {
+    console.log("📦 Attempting to load database...");
+    console.log("🔑 API Key: [present]");
+    console.log("🆔 DB ID:", dbId);
+
+    if (!dbId || !apiKey) {
+      container.innerHTML = "<p style='color:red;'>Missing database ID or API key.</p>";
+      console.warn("❌ Cannot load database: missing dbId or apiKey.");
+      return;
+    }
+
+    try {
+      console.log("⏳ Sending request to load database...");
+      const response = await client.loadDatabase(dbId, apiKey);
+
+      // ✅ Log full raw JSON response
+      console.log("📬 Raw JSON response received from /loadDatabase:");
+      console.log(JSON.stringify(response, null, 2));
+
+      // Optional: show raw JSON in UI if you're debugging
+      // container.innerHTML += `<pre>${JSON.stringify(response, null, 2)}</pre>`;
+
+      const dataArray = response?.data;
+      if (!Array.isArray(dataArray)) {
+        console.warn("⚠️ Response received, but it does not contain a valid 'data' array.");
+        container.innerHTML = `<p style='color:red;'>The server responded, but no valid data was found.</p>`;
+        return;
+      }
+
+      console.log(`📊 Documents to render: ${dataArray.length}`);
+
+      container.innerHTML = `
+        <h1>Database Viewer</h1>
+        <p>Loaded database ID: ${dbId}</p>
+        <hr />
+      `;
+
+      if (dataArray.length === 0) {
+        container.innerHTML += `<p>No documents found in this database.</p>`;
+        return;
+      }
+
+      dataArray.forEach(document => {
+        const docId = document._id || Math.random().toString(36).substring(2, 8);
+        const userCardHTML = `
+          <div class="user-card">
+            <div class="user-card-header" onclick="toggleContent('${docId}')">
+              <span>Document ID: ${docId}</span>
+            </div>
+            <div class="user-card-content" id="content-${docId}">
+              ${renderData(document)}
+              <div class="edit-controls">
+                <button class="edit-button" onclick="editDatabaseEntry('${docId}')">Edit</button>
+                <button class="delete-button" onclick="deleteDatabaseEntry('${docId}')">Delete</button>
+                <button class="add-button" onclick="addDatabaseEntry('${docId}')">Add</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += userCardHTML;
+      });
+
+    } catch (err) {
+      console.error("❌ Load failed:", err);
+      container.innerHTML = `<p style='color:red;'>Error loading database: ${err.message}</p>`;
+    }
+  }
+
+  window.onload = loadAndRenderDatabase;
+  </script>
+</body>
+</html>

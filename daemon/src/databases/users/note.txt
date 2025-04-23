@@ -1,0 +1,4 @@
+Each user get's their own folder
+Each database will have it's own folder with a lock file when loaded
+Each collection will be a json file
+Collection will consist of data entries

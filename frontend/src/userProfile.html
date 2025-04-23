@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./styles/profileStyle.css">
+    <script src="../../js-lib/src/mpdbjs.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+              <h2 class="brand-logo">udata</h2>
+          <img class = "our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+          <img class = "our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+            </div>
+            <nav class="nav-menu">
+              <ul class="nav-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text" onclick="window.location.href='index.html'">Home</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M3 12h4l3 8l4 -16l3 8h4"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text" onclick="window.location.href='library.html'">Your Library</span>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a href="#" class="nav-link">
+                    <span class="icon-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                          d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
+                        ></path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-text">Profile</span>
+                  </a>
+                </li>
+                
+              </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+              <a href="#" class="logout-link">
+                <span class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+                    ></path>
+                    <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                  </svg>
+                </span>
+                <span class="nav-text" onclick="window.location.href='login.html'">Log out</span>
+              </a>
+            </div>
+          </aside>
+          <div id="vertical-line" style="background-color: #8dc2be; width: 5px; height: 900px;">
+          </div>
+          <main class="main-content">
+            <section class="settings-panel">
+              <header class="settings-tabs">
+                <nav aria-label="Settings navigation">
+                  <ul class="tab-list">
+                    <li class="tab-item active">
+                      <a href="#" class="tab-link-1">Profile</a>
+                    </li>
+                    <li class="tab-item">
+                      <a href="#" class="tab-link-2" onclick="toggleSettings()">Settings</a>
+                    </li>
+                  </ul>
+                </nav>
+              </header>
+
+              <div id="friendButtonContainer" >
+                <button id="friendButton" style="display: none; margin-left: 130px";></button>
+            </div>
+              <div class="profileHeader">
+                <h1 id="username">John Doe</h1>
+            </div>
+                <section class="profile-picture-section">
+                  <!-- <button
+                    type="button"
+                    class="upload-button"
+                    aria-label="Upload profile picture"
+                  >
+                    <span class="icon-wrapper" >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="upload-icon"
+                        viewBox="0 0 24 24"
+                        width="48"
+                        height="48"
+                        stroke-width="4"
+                        stroke="currentColor"
+                        fill="none"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+                        <path d="M7 9l5 -5l5 5"></path>
+                        <path d="M12 4l0 12"></path>
+                      </svg>
+                    </span>
+                  </button> -->
+                  <img id="profileImage" src="johndoe.jpg" alt="Profile Image" width="370" height="300">
+                </section>
+                <div class="userBio" style="margin-bottom: 20px;">
+                    <h1 style="color: #037971;">Bio</h1>
+                    <p style="margin-top: 10px;">I am John, I am boring. I am an accountant.</p>
+                </div>
+                <!--Databases Section-->
+                <div class="databases">
+                    <h1 style="color: #037971;">Public Databases:</h1>
+                    <div class="databaselist" id="databaseList" style="margin-top: 10px;">
+                        <!-- Databases dynamically loaded here -->
+                    </div>
+                    <button id="viewLibrary" onclick="window.location.href='library.html'" style="margin-left: 130px;">View All</button>
+                </div>
+                
+                <!-- Friends Section -->
+                <div class="friends" style="margin-top: 10px;">
+                    <h1 style="color:#037971;">Friends</h2>
+                    <p id="friendsCount" style="margin-top: 10px;"></p>
+                    <div class="friendslist" id="friendsList">
+                        <!-- Friends dynamically loaded here -->
+                    </div>
+                    <button id="viewFriends" style="margin-left: 130px ;">View All</button>
+                </div>
+                
+              </div>
+               
+            </section>
+            
+          </main>
+        
+
+        
+
+        <!--Settings menu (hidden by default)-->
+        <div id="settingsMenu" class="settingsMenu" style="display: none">
+            <h1 style="margin-bottom: 40px; color: #037971;">Settings</h1>
+
+            <form class="settings-form" aria-label="User profile settings">
+              <label for="profileImgInp" style="color: #037971;">Change Profile Image:</label>
+              <input type="file" id="profileImgInp" accept="image/*" style="margin-top: 30px;">
+  
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="usernameInp" class="form-label" style="color: #037971;">Username</label>
+                  <input
+                    type="text"
+                    id="usernameInp"
+                    placeholder="Please enter your new username"
+                    class="form-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="bioInp" class="form-label" style="color: #037971;">Description</label>
+                  <input
+                    type="text"
+                    id="bioInp"
+                    placeholder="Update your bio ..."
+                    class="form-input"
+                  />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" style="background-color:#ff8c32; width: 100px;" >
+                  Save
+                </button>
+                <button type="reset" style="margin-left:75px; background-color: #ff8c32; width: 100px;" onclick="window.location.href='userProfile.html'">Cancel</button>
+              </div>
+            </form>
+        </div>
+
+        
+
+        
+    </div>
+
+    <script>
+        function toggleSettings() {
+            let originalSettings = document.getElementById("settingsMenu");
+            const mainContent = document.querySelector(".main-content");
+
+            mainContent.innerHTML="";
+
+            const clone = originalSettings.cloneNode(true);
+            clone.id="settingsMenuClone";
+            clone.style.display = "block";
+            mainContent.appendChild(clone);
+
+            // Safely select inside the clone
+            const saveBtn = clone.querySelector("#saveSettings");
+            const usernameInput = clone.querySelector("#usernameInp");
+            const bioInput = clone.querySelector("#bioInp");
+
+            if (!saveBtn || !usernameInput || !bioInput) {
+              console.error("One or more elements are missing in the clone.");
+              return;
+            }
+    
+            saveBtn.addEventListener("click", function () {
+            const newUsername = usernameInput.value.trim();
+            if (newUsername !== "") {
+                document.getElementById("username").textContent = newUsername;
+            }
+          
+            const newBio = bioInput.value.trim();
+            if (newBio !== "") {
+                document.getElementById("userBio").textContent = newBio;
+            }
+          
+          
+            clone.remove(); // Hide/remove cloned settings
+        });
+      }
+        // Change Profile Picture
+        document.getElementById("profileImgInp").addEventListener("change", function(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profileImage").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Example: Backend should provide these variables dynamically
+        let isOwnProfile = true;  // Change this based on login session
+        let isFriend = true;      // Change this based on friendship status
+        let totalFriends = 9;     // Example count
+        let databases = [
+            { name: "Database 1", public: true },
+            { name: "Database 2", public: true },
+            { name: "Database 3", public: true },
+            { name: "Database 4", public: true },
+            { name: "Database 5", public: true },
+            { name: "Database 6", public: true }
+        ];
+        let friends = [
+            {name: "Kyle"},
+            {name: "Joe"},
+            {name: "Steven"},
+            {name: "Tim"}
+        ]
+
+        // Handle profile visibility
+        function adjustProfileView() {
+            // Hide settings if not their profile
+            if (!isOwnProfile) {
+                document.getElementById("settingsSection").style.display = "none";
+                document.getElementById("settingsMenu").style.display = "none";
+            }
+
+            // Handle friend button
+            let friendButton = document.getElementById("friendButton");
+            if (!isOwnProfile) {
+                friendButton.style.display = "block";
+                updateFriendButton();
+            }
+
+            // Adjust friends section
+            let friendsList = document.getElementById("friendsList");
+            let friendsCount = document.getElementById("friendsCount");
+            friendsCount.textContent = `Friends: ${totalFriends}`;
+            
+            if (!isOwnProfile) {
+                friendsList.style.display = "none";  // Hide full list
+                document.getElementById("viewFriends").style.display = "none";
+            }
+
+            // Adjust databases shown
+            let databaseList = document.getElementById("databaseList");
+            databaseList.innerHTML = ""; // Clear any existing items
+            let databasesToShow = isFriend ? databases : databases.slice(0, 4); 
+
+            databasesToShow.forEach(db => {
+                let dbElement = document.createElement("div");
+                dbElement.classList.add("databaseitem");
+                dbElement.textContent = db.name;
+                databaseList.appendChild(dbElement);
+            });
+
+            if (isFriend && databases.length > 4) {
+                document.getElementById("viewLibrary").style.display = "block";
+            }
+        }
+
+        function updateFriendButton() {
+            let friendButton = document.getElementById("friendButton");
+            if (isFriend) {
+                friendButton.textContent = "Unfriend";
+                friendButton.classList.add("unfriend");
+                friendButton.classList.remove("add-friend");
+            } else {
+                friendButton.textContent = "Add Friend";
+                friendButton.classList.add("add-friend");
+                friendButton.classList.remove("unfriend");
+            }
+        }
+
+        document.getElementById("friendButton").addEventListener("click", function() {
+            isFriend = !isFriend;
+            updateFriendButton();
+            totalFriends += isFriend ? 1 : -1;
+            document.getElementById("friendsCount").textContent = `Friends: ${totalFriends}`;
+
+            // TODO: Send request to the backend to update friendship status
+            console.log(isFriend ? "Added as friend" : "Removed as friend");
+        
+        });
+
+        // Call function on page load
+        adjustProfileView();
+    </script>
+</body>
+</html>

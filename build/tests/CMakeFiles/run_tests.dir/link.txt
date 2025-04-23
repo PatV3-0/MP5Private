@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/run_tests.dir/dummy_test.cpp.o -o ../bin/run_tests  ../libmp5_lib.a 

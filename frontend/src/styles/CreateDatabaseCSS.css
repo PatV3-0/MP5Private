@@ -1,0 +1,169 @@
+/* CreateDatabaseCSS.css - Styling for Create Database Page */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Blurred background image */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('udata.png') center/cover no-repeat;
+    filter: blur(8px);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* Logo styling */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    padding: 2.5px;
+    background-color: #4E598C;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 80px auto 2rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+
+h1 {
+    color: #037971;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #037971;
+    box-shadow: 0 0 0 2px rgba(3, 121, 113, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #ff8c32;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: #f07b21;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .logo-container {
+        top: 15px;
+        left: 15px;
+        box-shadow: 0 0 0 2px #ff8c32;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 35px;
+    }
+    
+    .logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 3px;
+    }
+    
+    .form-container {
+        padding: 1.2rem;
+        margin-top: 60px;
+    }
+    
+    input[type="text"],
+    textarea,
+    select,
+    button {
+        padding: 0.7rem;
+    }
+}

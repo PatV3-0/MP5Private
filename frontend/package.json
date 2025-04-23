@@ -1,0 +1,24 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "Frontend for the project",
+    "main": "index.html",
+    "scripts": {
+      "start": "live-server", 
+      "lint:html": "htmlhint frontend/*.html",  
+      "lint:css": "stylelint frontend/css/*.css",  
+      "deploy": "gh-pages -d ./frontend"  
+    },
+    "dependencies": {
+      "live-server": "^1.2.1" 
+    },
+    "devDependencies": {
+      "htmlhint": "^0.14.0", 
+      "stylelint": "^16.13.0",  
+      "stylelint-config-standard": "^37.0.0",  
+      "gh-pages": "^3.2.3" 
+    },
+    "author": "COS301 MPG5",
+    "license": "MIT"
+  }
+  

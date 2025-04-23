@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "000001",
+    "name": "new_collection",
+    "documents": [
+      {
+        "_id": "000001",
+        "name": "whatsupdoc",
+        "key": "value",
+        "anotherKey": "anotherValue"
+      },
+      {
+        "_id": "000002",
+        "name": "They're taking the hobbits to Isengard!",
+        "hobbit": [
+          "Frodo",
+          "Sam",
+          "Merry",
+          "Pippin"
+        ]
+      },
+      {
+        "_id": "000003",
+        "name": "Orginal Name",
+        "value": "Some altered vale"
+      }
+    ]
+  }
+]

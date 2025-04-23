@@ -1,0 +1,55 @@
+[
+  {
+    "_id": "string",
+    "admin": "string",
+    "username": "string",
+    "name": "string",
+    "surname": "string",
+    "email": "string",
+    "password": "string",
+    "profileImage": "",
+    "databases": [
+      {
+        "$oid": "6723c0a7403556e0f031da1d"
+      }
+    ],
+    "saveddatabases": [
+      {
+        "$oid": "67232de147a43e662465e6b7"
+      }
+    ],
+    "followers": [],
+    "following": [
+      {
+        "$oid": "6721ec0a54ecb6d5dd32253f"
+      },
+      {
+        "$oid": "6721ed7d54ecb6d5dd322547"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6721ec0a54ecb6d5dd32253f"
+    },
+    "admin": "false",
+    "username": "oneEyeCretin",
+    "name": "Bill",
+    "surname": "Cipher",
+    "email": "weirdmageddon666@endoftimes.com",
+    "password": "GetFreaky3",
+    "profileImage": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Bill_Cipher.webp/220px-Bill_Cipher.webp.png",
+    "databases": [
+      {
+        "$oid": "6721f95ae527b2c72e145639"
+      }
+    ],
+    "saveddatabases": [
+      {
+        "$oid": "6721fedc8b212d176daec854"
+      }
+    ],
+    "followers": [],
+    "following": []
+  }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "_id": "0-0-1-0", 
+        "doc_name": "document_name",
+        "some user made thing": "cool value"
+    },
+    {
+        "_id": "0-0-1-1", 
+        "doc_name": "Pablo",
+        "some user made thing2": "cool value2"
+    }
+]

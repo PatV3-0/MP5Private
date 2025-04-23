@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>udata - Your Database Hub</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <h2 class="brand-logo">udata</h2>
+                <img class="our-img" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ce883d387d290ff537693b990bae4fc466c020b" alt="Decoration 1" class="decoration-1" />
+                <img class="our-img-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbc7e30cfa1fffb4c156af8763c92817839e6b8b" alt="Decoration 2" class="decoration-2" />
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">
+                            <span class="icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="library.html" class="nav-link">
+                            <span class="icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 12h4l3 8l4 -16l3 8h4"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Your Library</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="userProfile.html" class="nav-link">
+                            <span class="icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                </svg>
+                            </span>
+                            <span class="nav-text">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link">
+                    <span class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                            <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">Log out</span>
+                </a>
+            </div>
+        </aside>
+        
+        <div id="vertical-line" style="background-color: #2f9d94; width: 5px; height: 760px;"></div>
+        
+        <main class="main-content">
+            <div class="container">
+                <h1>Welcome to Your Databases</h1>
+                
+                <!-- Recently Worked On Section -->
+                <div id="recentDatabase" class="recent-database" style="display: none;">
+                    <h2>Recently Worked On</h2>
+                    <div class="database-card" id="recentDbCard">
+                        <h3 id="recentDbName"></h3>
+                        <p id="recentDbDescription"></p>
+                        <div class="dummy-data">Dummy data preview...</div>
+                        <button id="openRecentDb">Open Database</button>
+                    </div>
+                </div>
+
+                <!-- User Database Carousel -->
+                <div id="userDatabases" class="carousel-container" style="display: none;">
+                    <h2>Your Databases</h2>
+                    <div class="carousel" id="databaseCarousel"></div>
+                    <button id="viewAllBtn">View All</button>
+                </div>
+
+                <!-- No Database Shortcut -->
+                <div id="noDatabases" class="create-database" style="display: none;">
+                    <h2>Create a New Database</h2>
+                    <button id="createDatabase">+</button>
+                </div>
+
+                <!-- Template Carousel -->
+                <div class="carousel-container">
+                    <h2>Template Databases</h2>
+                    <div class="carousel" id="templateCarousel"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../../js-lib/src/mpdbjs.js"></script>
+    <script src="scripts/index.js"></script>
+    <script>
+        let userDatabases = [
+            { name: "Customer Data", description: "A database of customer information.", id: "db1" },
+            { name: "Inventory", description: "Tracks product inventory levels.", id: "db2" },
+            { name: "Sales Reports", description: "Sales performance data.", id: "db3" },
+            { name: "HR Records", description: "Employee information database.", id: "db4" },
+            { name: "Feedback", description: "Customer feedback collection.", id: "db5" }
+        ];
+
+        let templateDatabases = [
+            { name: "Project Tracker", description: "Manage tasks and projects." },
+            { name: "Expense Reports", description: "Track business expenses." },
+            { name: "Recipe Book", description: "Organize and share recipes." }
+        ];
+        
+        function loadDatabases() {
+            const dbCarousel = document.getElementById("databaseCarousel");
+            const templateCarousel = document.getElementById("templateCarousel");
+            const recentDbSection = document.getElementById("recentDatabase");
+            const noDbSection = document.getElementById("noDatabases");
+            const userDbSection = document.getElementById("userDatabases");
+
+            if (userDatabases.length > 0) {
+                userDbSection.style.display = "block";
+                dbCarousel.innerHTML = "";
+
+                // Only show up to 4 databases
+                const shownDatabases = userDatabases.slice(0, 4);
+                shownDatabases.forEach(db => {
+                    let dbCard = document.createElement("div");
+                    dbCard.classList.add("database-card");
+                    dbCard.innerHTML = `<h3>${db.name}</h3><p>${db.description}</p>`;
+                    dbCard.onclick = () => alert(`Opening database: ${db.name}`);
+                    dbCarousel.appendChild(dbCard);
+                });
+
+                // Set Recently Worked On (first DB as example)
+                let recentDb = userDatabases[0];
+                document.getElementById("recentDbName").textContent = recentDb.name;
+                document.getElementById("recentDbDescription").textContent = recentDb.description;
+                document.getElementById("openRecentDb").onclick = () => alert(`Opening recent database: ${recentDb.name}`);
+                recentDbSection.style.display = "block";
+            } else {
+                noDbSection.style.display = "block";
+            }
+
+            // Load templates
+            templateCarousel.innerHTML = "";
+            templateDatabases.forEach(template => {
+                let templateCard = document.createElement("div");
+                templateCard.classList.add("database-card");
+                templateCard.innerHTML = `<h3>${template.name}</h3><p>${template.description}</p>`;
+                templateCard.onclick = () => alert(`Using template: ${template.name}`);
+                templateCarousel.appendChild(templateCard);
+            });
+        }
+
+        // Button handlers
+        document.getElementById("createDatabase").onclick = () => {
+            alert("Creating new database");
+        };
+
+        document.getElementById("viewAllBtn").onclick = () => {
+            window.location.href = "library.html";
+        };
+
+        // Load everything on page load
+        window.onload = loadDatabases;
+    </script>
+</body>
+</html>

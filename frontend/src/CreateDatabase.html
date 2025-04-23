@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Database</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&family=Inter:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/CreateDatabaseCSS.css" />
+  <style>
+    .error { color: red; font-size: 14px; margin-top: 5px; }
+    #loadingSpinner { display: none; margin-top: 15px; }
+    #debugConsole {
+      background: #f5f5f5;
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      font-family: monospace;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .log-error { color: #dc3545; }
+    .log-warn { color: #ffc107; }
+    .log-info { color: #17a2b8; }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="udata.png" alt="udata logo" class="logo">
+  </div>
+
+  <div class="form-container">
+    <h1>Create a New Database</h1>
+    <form id="createDbForm">
+      <label for="dbName">Database Name</label>
+      <input type="text" id="dbName" name="dbName" required />
+      <p id="dbNameError" class="error"></p>
+
+      <label for="dbDescription">Description</label>
+      <textarea id="dbDescription" name="dbDescription" rows="4" required></textarea>
+      <p id="dbDescriptionError" class="error"></p>
+
+      <label for="visibility">Visibility</label>
+      <select id="visibility" name="visibility" required>
+        <option value="private">Private</option>
+        <option value="public">Public</option>
+      </select>
+
+      <label for="tags">Tags (comma-separated)</label>
+      <input type="text" id="tags" name="tags" placeholder="e.g., finance, music, personal" />
+
+      <button type="submit" id="submitBtn">Create Database</button>
+      <div id="loadingSpinner">Creating database, please wait...</div>
+    </form>
+    
+    <div id="debugConsole">
+      <h3>Debug Console</h3>
+      <div id="debugLog"></div>
+    </div>
+  </div>
+
+  <script src="mpdbjs.js"></script>
+  
+  <script>
+    // Debug logging function
+    function logDebug(message, type = 'info') {
+      const debugLog = document.getElementById('debugLog');
+      const timestamp = new Date().toISOString().slice(11, 19);
+      const logEntry = document.createElement('div');
+      logEntry.innerHTML = `<span class="log-${type}">[${timestamp}] ${message}</span>`;
+      debugLog.appendChild(logEntry);
+      debugLog.scrollTop = debugLog.scrollHeight;
+      console[type](`[DEBUG] ${message}`);
+    }
+
+    // Initialize MPDB Client
+    logDebug('Initializing MPDBClient...');
+    const mpdbClient = new MPDBClient("http://localhost:3000");
+    
+    // Set the hardcoded API key
+    const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaWNlIiwiZW1haWwiOiJhbGljZUBleGFtcGxlLmNvbSIsImFkbWluIjpmYWxzZSwiZGF0ZSI6MTc0NDkxMzc1NzI5MCwiaWF0IjoxNzQ0OTEzNzU3LCJleHAiOjE3NDUwODY1NTd9.OFMCgyxgimYQ7DeMfEz4EUMLgtTNP9FJhLyMKbUbSDM';
+    mpdbClient.token = API_KEY;
+    logDebug('Using hardcoded API key');
+
+    // Enhanced request logging
+    const originalRequest = mpdbClient.request;
+    mpdbClient.request = async function(endpoint, method, data) {
+      logDebug(`Preparing ${method} request to ${endpoint}`);
+      logDebug(`Request payload: ${JSON.stringify(data, null, 2)}`);
+      
+      try {
+        const startTime = Date.now();
+        const response = await originalRequest.call(this, endpoint, method, data);
+        const duration = Date.now() - startTime;
+        
+        logDebug(`Response from ${endpoint} (${duration}ms): ${JSON.stringify(response, null, 2)}`);
+        return response;
+      } catch (error) {
+        logDebug(`API Error: ${error.message}`, 'error');
+        throw error;
+      }
+    };
+
+    document.getElementById("createDbForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+      logDebug('Form submission started');
+
+      if (!validateForm()) {
+        logDebug('Form validation failed', 'warn');
+        return;
+      }
+
+      const dbName = document.getElementById("dbName").value.trim();
+      const dbDescription = document.getElementById("dbDescription").value.trim();
+      const visibility = document.getElementById("visibility").value;
+      const tags = document.getElementById("tags").value.split(",")
+                .map(tag => tag.trim())
+                .filter(tag => tag.length > 0);
+
+      logDebug(`Form data prepared`, 'info');
+      logDebug(`Name: ${dbName}`, 'info');
+      logDebug(`Description: ${dbDescription}`, 'info');
+      logDebug(`Visibility: ${visibility}`, 'info');
+      logDebug(`Tags: ${tags.join(', ')}`, 'info');
+
+      const submitBtn = document.getElementById("submitBtn");
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      submitBtn.disabled = true;
+      loadingSpinner.style.display = "block";
+
+      try {
+        logDebug('Calling mpdbClient.createDatabase()');
+        // Modified to send only the name as required by your API
+        const response = await mpdbClient.createDatabase(dbName);
+        
+        logDebug(`API Response: ${JSON.stringify(response, null, 2)}`);
+        alert(`Database "${dbName}" created successfully!`);
+        
+        if (response.data?.databaseID) {
+          logDebug(`Redirecting to database.html?id=${response.data.databaseID}`);
+          window.location.href = `database.html?id=${encodeURIComponent(response.data.databaseID)}`;
+        }
+      } catch (error) {
+        logDebug(`Creation failed: ${error.message}`, 'error');
+        alert(`Error: ${error.message}`);
+      } finally {
+        submitBtn.disabled = false;
+        loadingSpinner.style.display = "none";
+        logDebug('Form submission completed');
+      }
+    });
+
+    function validateForm() {
+      let isValid = true;
+      const dbName = document.getElementById("dbName").value.trim();
+      const dbDescription = document.getElementById("dbDescription").value.trim();
+
+      document.getElementById("dbNameError").textContent = '';
+      document.getElementById("dbDescriptionError").textContent = '';
+
+      if (dbName.length < 3 || dbName.length > 50) {
+        document.getElementById("dbNameError").textContent = 
+          'Database name must be between 3-50 characters';
+        isValid = false;
+        logDebug('Invalid database name length', 'warn');
+      }
+
+      if (dbDescription.length < 10) {
+        document.getElementById("dbDescriptionError").textContent = 
+          'Description must be at least 10 characters';
+        isValid = false;
+        logDebug('Invalid description length', 'warn');
+      }
+
+      return isValid;
+    }
+
+    logDebug('Page initialization complete. Ready for user interaction.');
+  </script>
+</body>
+</html>
