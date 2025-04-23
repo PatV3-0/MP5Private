@@ -1,4 +1,4 @@
-name: JavaScript API CI Pipeline
+name: JavaScript API Pipeline
 
 on:
   push:
