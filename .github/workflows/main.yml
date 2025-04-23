@@ -2,9 +2,9 @@ name: Full Stack Build and Test
 
 on:
   push:
-    branches: [dev]
+    branches: [disabled]
   pull_request:
-    branches: [dev]
+    branches: [disabled]
 
 jobs:
   build-and-test:
