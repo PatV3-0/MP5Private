@@ -149,7 +149,6 @@ program
       });
     
 program.parse(process.argv);
-#!/usr/bin/env node
 import {Command} from "commander";
 import { spawn } from "child_process";
 import { exec } from "child_process";

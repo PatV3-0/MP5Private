@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import * as net from "net";
 // import figlet from "figlet";
 import chalk from "chalk";
-import { permission } from "process";
+//import { permission } from "process";
 
 const program = new Command();
 const PID_FILE = "../../daemon/src/daemon.lock";
