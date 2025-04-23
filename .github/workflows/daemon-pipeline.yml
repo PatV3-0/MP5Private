@@ -1,0 +1,120 @@
+name: Daemon Pipeline
+
+on:
+  push:
+    branches: [ "nonexistent"]
+  pull_request:
+    branches: [ "nonexistent"]
+
+  workflow_dispatch:
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Branch protection checks
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/main" && "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            echo "Direct pushes to main are not allowed."
+            exit 1
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install --save-dev jest @types/jest ts-jest
+        working-directory: daemon
+
+      - name: Install supertest
+        run: npm install supertest @types/supertest --save-dev
+        working-directory: daemon
+
+
+      - name: Install ESLint dependencies
+        run: npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+        working-directory: daemon
+
+      - name: Linting with eslint
+        run: npm run lint -- --fix
+        working-directory: daemon
+
+      - name: Static Code Analysis
+        run: npm run lint -- --max-warnings=0
+        working-directory: daemon
+
+
+  daemon-build:
+    runs-on: ubuntu-latest
+    needs: source
+    if: startsWith(github.ref, 'refs/heads/daemon') || github.event_name == 'pull_request'
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update Submodules
+        run: git submodule update --init --recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install --save-dev jest @types/jest ts-jest jsonwebtoken bcryptjs
+        working-directory: daemon
+
+      - name: Install Jest types
+        run: npm install --save-dev @types/jest
+        working-directory: daemon
+
+      - name: Install ESLint dependencies
+        run: npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+        working-directory: daemon
+
+      - name: Check for TypeScript build output
+        run: |
+          echo "Running TypeScript build"
+          npm run build
+          echo "Listing the files in the dist directory"
+          ls -l dist
+        working-directory: daemon
+      
+      - name: List files in dist directory
+        run: ls -R dist
+        working-directory: daemon
+
+      - name: Compile Typescript
+        run: npm run build
+        working-directory: daemon
+
+      - name: Run compiled JavaScript
+        run: npm run start
+        working-directory: daemon
+
+        #Removed linting for now
+        #name: Lint Typescript
+        #run: npm run lint -- --fix
+        #working-directory: daemon
+
+        #name: Run unit tests
+        #run: npm test
+        #working-directory: daemon
+
+        #name: Code Coverage
+        #run: npm test -- --coverage
+        #working-directory: daemon

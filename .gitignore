@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+**/node_modules/
+package-lock.json
+**/package-lock.json
+
+# Build files
+build/
+dist/
+**/**.js
+**/*.js.map
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Test files
+**/test_db.json
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Daemon specific
+daemon.lock
+daemon/src/**/*.js
+daemon/tests/**/*.js
+
+# CLI specific
+cli/src/**/*.js
+
+# Documentation
+*.pdf
+*.docx
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Temporary files
+*.tmp
+*~
+# Session files
+.session.json
