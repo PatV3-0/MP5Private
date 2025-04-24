@@ -80,5 +80,5 @@ jobs:
         working-directory: cli
 
       - name: Build project
-        run: npm run build
+        run: npm run 
         working-directory: cli
