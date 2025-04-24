@@ -2,14 +2,13 @@ name: Full Stack CI Pipeline
 
 on:
   push:
-    branches: [dev]
+    branches: [apidev]
   pull_request:
-    branches: [dev]
+    branches: [apidev]
   workflow_dispatch:
 
 jobs:
-  # First Job: Set up and test JavaScript REST API
-  js-api:
+  setup-API:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,56 +34,151 @@ jobs:
         run: npm install --save-dev jest
         working-directory: rest-api
 
-      - name: Run REST API tests
+      - name: Run tests
         run: npm test
         working-directory: rest-api
 
-      - name: Build REST API
-        run: npm run build
-        working-directory: rest-api
-
-  # Second Job: Full-stack Docker-based integration tests
-  full-stack:
+  build-API:
     runs-on: ubuntu-latest
-    needs: js-api
+    needs: setup-API
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
 
-      - name: Set up Docker Compose
-        run: docker compose version
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: Convert setup script line endings (if needed)
+      - name: Install dependencies
+        run: npm install
+        working-directory: rest-api
+
+      - name: Run tests
+        run: npm test
+        working-directory: rest-api
+      
+  test-cli:
+    runs-on: ubuntu-latest
+    outputs:
+      tests_passed: ${{ steps.set-status.outputs.tests_passed }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: cli
+
+      - name: Install dev dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y dos2unix
-          dos2unix setup.sh
+          npm install --save-dev \
+            jest @types/jest ts-jest \
+            eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+        working-directory: cli
 
-      - name: Export auth token for Docker
-        run: echo "MP5_SECRET_TOKEN=${{ secrets.MP5_SECRET_TOKEN }}" > .env
+      - name: Lint code
+        run: npm run lint
+        working-directory: cli
 
-      - name: Build and start containers
-        run: docker compose up --build -d
+      - name: Run unit tests
+        run: npm test
+        working-directory: cli
 
-      - name: Wait for services to be ready
-        run: sleep 15
+      - name: Generate coverage report
+        run: npm test -- --coverage
+        working-directory: cli
 
-      - name: Test Daemon (port 5000)
-        run: |
-          nc -zv localhost 5000 || (echo "❌ Daemon not responding on port 5000" && exit 1)
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-coverage
+          path: cli/coverage/
 
-      - name: Test REST API `/getDatabases` (port 3000)
-        run: |
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST http://localhost:3000/getDatabases \
-          -H "Content-Type: application/json" \
-          -d '{"payload": {"apiKey": "testkey"}}')
-          echo "HTTP response: $RESPONSE"
-          [ "$RESPONSE" -eq 200 ] || (echo "❌ REST API test failed with code $RESPONSE" && exit 1)
+  build-cli:
+    runs-on: ubuntu-latest
+    needs: test-cli
+    if: success()  # Only runs if test job succeeded
 
-      - name: Test Web Frontend (Apache on port 8080)
-        run: |
-          curl -s http://localhost:8080 | grep -i "<html" || (echo "❌ Web frontend not served properly" && exit 1)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
 
-      - name: Shut down containers
-        if: always()
-        run: docker compose down
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: cli
+
+      - name: Build project
+        run: npm run
+        working-directory: cli
+
+
+  # Second Job: Full-stack Docker-based integration tests
+  build-and-test-Docker:
+    needs: build-API
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Compose
+      run: docker compose version
+
+    - name: Convert setup script line endings (if needed)
+      run: |
+        sudo apt-get update && sudo apt-get install -y dos2unix
+        dos2unix setup.sh
+
+    - name: Export auth token for Docker
+      run: echo "MP5_SECRET_TOKEN=${{ secrets.MP5_SECRET_TOKEN }}" > .env
+
+    - name: Build and start containers
+      run: docker compose up --build -d
+
+    - name: Wait for services to be ready
+      run: sleep 10
+
+    - name: Test Daemon (port 5000)
+      run: |
+        nc -zv localhost 5000 || (echo "❌ Daemon not responding on port 5000" && exit 1)
+
+    - name: Test REST API /getDatabases (port 3000)
+      run: |
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST http://localhost:3000/getDatabases \
+        -H "Content-Type: application/json" \
+        -d '{"payload": {"apiKey": "testkey"}}')
+        echo "HTTP response: $RESPONSE"
+        [ "$RESPONSE" -eq 200 ] || (echo "❌ REST API test failed with code $RESPONSE" && exit 1)
+      
+    - name: Test Web Frontend (Apache on port 8080)
+      run: |
+        curl -s http://localhost:8080 | grep -i "<html" || (echo "❌ Web frontend not served properly" && exit 1)
+
+    - name: Shut down containers
+      if: always()
+      run: docker compose down
