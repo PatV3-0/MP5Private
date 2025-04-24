@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-cli:
     runs-on: ubuntu-latest
     outputs:
       tests_passed: ${{ steps.set-status.outputs.tests_passed }}
@@ -56,9 +56,9 @@ jobs:
           name: cli-coverage
           path: cli/coverage/
 
-  build:
+  build-cli:
     runs-on: ubuntu-latest
-    needs: test
+    needs: test-cli
     if: success()  # Only runs if test job succeeded
 
     steps:
