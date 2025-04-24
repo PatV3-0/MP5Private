@@ -17,7 +17,10 @@
   "devDependencies": {
     "@types/chalk": "^0.4.31",
     "@types/node": "^22.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.0",
     "commander": "^13.1.0",
+    "eslint": "^9.25.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
