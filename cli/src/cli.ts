@@ -45,6 +45,14 @@ program
     .description("A CLI to interact with the daemon")
     .version("1.0.0");
 
+
+program
+    .command("display")
+    .description("display the logo")
+    .action(() => {
+        printLogo();
+    });
+
 program
     .command("start")
     .description("start the daemon")
