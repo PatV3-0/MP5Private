@@ -7,8 +7,137 @@ on:
     branches: [dev]
 
 jobs:
-  build-and-test:
+  setup-API:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: rest-api
+
+      - name: Install dotenv
+        run: npm install dotenv
+        working-directory: rest-api
+
+      - name: Install Jest
+        run: npm install --save-dev jest
+        working-directory: rest-api
+
+      - name: Run tests
+        run: npm test
+        working-directory: rest-api
+
+  build-API:
+    runs-on: ubuntu-latest
+    needs: setup-API
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: rest-api
+
+      - name: Run tests
+        run: npm test
+        working-directory: rest-api
+      
+  test-cli:
+    runs-on: ubuntu-latest
+    outputs:
+      tests_passed: ${{ steps.set-status.outputs.tests_passed }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: cli
+
+      - name: Install dev dependencies
+        run: |
+          npm install --save-dev \
+            jest @types/jest ts-jest \
+            eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+        working-directory: cli
+
+      - name: Lint code
+        run: npm run lint
+        working-directory: cli
+
+      - name: Run unit tests
+        run: npm test
+        working-directory: cli
+
+      - name: Generate coverage report
+        run: npm test -- --coverage
+        working-directory: cli
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-coverage
+          path: cli/coverage/
+
+  build-cli:
+    runs-on: ubuntu-latest
+    needs: test-cli
+    if: success()  # Only runs if test job succeeded
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: cli
+
+      - name: Build project
+        run: npm run
+        working-directory: cli
+
+  build-and-test-docker:
+    runs-on: ubuntu-latest
+    needs: build-cli
 
     steps:
     - name: Checkout repo
@@ -54,7 +183,7 @@ jobs:
   deploy-docker:
     name: 🚀 Deploy Docker App
     runs-on: ubuntu-latest
-    needs: build-and-test
+    needs: build-and-test-docker
     if: success()
 
     steps:
