@@ -76,4 +76,4 @@ jobs:
       - name: Optionally ping a healthcheck endpoint
         run: |
           sleep 10
-          curl -s http://localhost:3000/login.html "Warning: Health check failed"
+          curl -s http://localhost:8080/login.html "Warning: Health check failed"
