@@ -2,7 +2,7 @@ import { spawnSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
-const cliPath = '../src/cli.ts';
+const cliPath = path.resolve(__dirname, '../src/cli.ts');
 const pidFilePath = path.resolve(__dirname, '../../daemon/src/daemon.lock');
 
 console.log('CLI Path:', cliPath);
