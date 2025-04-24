@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint \"**/*.ts\"",
     "test": "jest --passWithNoTests"
   },
   "keywords": [],
@@ -16,14 +16,14 @@
   },
   "devDependencies": {
     "@types/chalk": "^0.4.31",
-    "@types/jest": "^29.5.14",
+    "@types/jest": "^29.0.0",
     "@types/node": "^22.14.0",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "commander": "^13.1.0",
-    "eslint": "^9.25.1",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.3.2",
+    "eslint": "^8.57.1",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
