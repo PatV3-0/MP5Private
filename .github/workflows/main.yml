@@ -59,7 +59,7 @@ jobs:
 
       - name: Run tests
         run: npm test
-        working-directory: api
+        working-directory: rest-api
 
 
   # Second Job: Full-stack Docker-based integration tests
